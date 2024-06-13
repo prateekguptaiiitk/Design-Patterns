@@ -44,7 +44,7 @@ class ExtraCheese(ToppingDecorator):
 		return self.getBasePizzaCost() + 10
 
 
-class ExtraCheese(ToppingDecorator):
+class Mushrooms(ToppingDecorator):
 
 	def __init__(self, basePizza):
 		super().__init__(basePizza)
@@ -53,4 +53,7 @@ class ExtraCheese(ToppingDecorator):
 		return self.getBasePizzaCost() + 15
 
 BasePizza = ExtraCheese(Margheretta())
+print(BasePizza.cost())
+
+BasePizza = Mushrooms(ExtraCheese(Margheretta()))
 print(BasePizza.cost())
