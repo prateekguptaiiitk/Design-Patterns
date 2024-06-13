@@ -23,19 +23,34 @@ class Margheretta(BasePizza):
 
 class ToppingDecorator(BasePizza):
 
-	def getPizza(self):
-		return self._basePizza
-
-	def calculateCost(self):
-		return self._basePizza.calculateCost()
-
-class ExtraCheese(ToppingDecorator):
-	
 	_basePizza = None
 	
 	def __init__(self, basePizza):
 		self._basePizza = basePizza
-		
-	def calculateCost(self):
-		return self.getPizza().cost() + 10
 
+	def getBasePizzaCost(self):
+		return self._basePizza.cost()
+
+	def cost(self):
+		pass
+
+
+class ExtraCheese(ToppingDecorator):
+
+	def __init__(self, basePizza):
+		super().__init__(basePizza)
+	
+	def cost(self):
+		return self.getBasePizzaCost() + 10
+
+
+class ExtraCheese(ToppingDecorator):
+
+	def __init__(self, basePizza):
+		super().__init__(basePizza)
+	
+	def cost(self):
+		return self.getBasePizzaCost() + 15
+
+BasePizza = ExtraCheese(Margheretta())
+print(BasePizza.cost())
