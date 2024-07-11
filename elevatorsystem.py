@@ -20,7 +20,7 @@ class ElevatorDisplay():
 		print('Current floor: ', self.floor, ' and moving ', self.direction)
 
 class ElevatorCar():
-	id = 0
+	elevatorID = 0
 	display = None
 	internalButtons = None
 	elevatorState = None
@@ -28,36 +28,35 @@ class ElevatorCar():
 	elevatorDirection = None
 	elevatorDoor = None
 
-	def __init__(self):
+	def __init__(self, id):
 		self.display = ElevatorDisplay()
 		self.internalButtons = InternalButtons()
 		self.elevatorState = ElevatorState.IDLE
 		self.currentFloor = 0
 		self.elevatorDirection = Direction.UP
 		self.elevatorDoor = ElevatorDoor()
+		self.elevatorID = id
 
 	def showDisplay(self):
-		self.display.showDisplay()
-
-	def setDisplay(self):
-		self.display.setDisplay(self.currentFloor, self.elevatorDirection.name)
+		self.display.showDisplay()		
 
 	def moveElevator(self, dir, destinationFloor):
 		startFloor = self.currentFloor
 
-		if dir == Direction.UP:
+		if startFloor < destinationFloor:
+			self.elevatorDirection = Direction.UP
 			for i in range(startFloor, destinationFloor + 1):
 				self.currentFloor = i
-				self.setDisplay()
+				self.display.setDisplay(self.currentFloor, self.elevatorDirection.name)
 				self.showDisplay()
 
 				if i == destinationFloor:
 					return True
-
-		if dir == Direction.DOWN:
-			for i in range(destinationFloor, startFloor - 1, -1):
-				self.currentFloor = startFloor
-				self.setDisplay()
+		else:
+			self.elevatorDirection = Direction.DOWN
+			for i in range(startFloor, destinationFloor - 1, -1):
+				self.currentFloor = i
+				self.display.setDisplay(self.currentFloor, self.elevatorDirection.name)
 				self.showDisplay()
 
 				if i == destinationFloor:
@@ -67,12 +66,11 @@ class ElevatorCar():
 
 from collections import deque
 class ElevatorController():
-	requestQueue = []
+	requestQueue = deque()
 	elevatorCar = None
 
 	def __init__(self, elevatorCar):
 		self.elevatorCar = elevatorCar
-		self.requestQueue = deque()
 
 	def submitNewRequest(self, currFloor, direction):
 		self.requestQueue.append((currFloor, direction))
@@ -82,14 +80,15 @@ class ElevatorController():
 	# 	pass
 
 	def controlElevator(self):
+		elevatorDoor = ElevatorDoor()
 		while self.requestQueue:
 			req = self.requestQueue.popleft()
 			status = self.elevatorCar.moveElevator(req[1], req[0])
 			if status:
-				ElevatorDoor().openDoor()
-				ElevatorDoor().closeDoor()
+				elevatorDoor.openDoor()
+				elevatorDoor.closeDoor()
 
-				destFloor = int(input('Enter destination floor no. you want to go'))
+				# destFloor = int(input('Enter destination floor no. you want to go'))
 				# InternalButtons().pressButton(destFloor)
 
 class InternalButtons():
@@ -145,14 +144,14 @@ class ExternalButtonDispatcher():
 	def submitExternalRequest(self, currFloor, direction):
 		# for simplicity we are following even odd
 		for elevatorController in self.elevatorControllerList:
-			elevatorID = elevatorController.elevatorCar.id
+			elevatorID = elevatorController.elevatorCar.elevatorID
 
 			if elevatorID % 2 == currFloor % 2:
 				elevatorController.submitNewRequest(currFloor, direction)
 
 class ElevatorDoor():
 	def openDoor(self):
-		print('Opeining the Elevator door')
+		print('Opening the Elevator door')
 
 	def closeDoor(self):
 		print('Closing the Elevator door')
@@ -180,18 +179,15 @@ class Building():
 
 class ElevatorCreator():
 	elevatorControllerList = []
+	
+	elevatorCar1 = ElevatorCar(1)
+	controller1 = ElevatorController(elevatorCar1)
 
-	def __init__(self):
-		elevatorCar1 = ElevatorCar()
-		elevatorCar1.id = 1
-		controller1 = ElevatorController(elevatorCar1)
+	elevatorCar2 = ElevatorCar(2)
+	controller2 = ElevatorController(elevatorCar2)
 
-		elevatorCar2 = ElevatorCar()
-		elevatorCar2.id = 2
-		controller2 = ElevatorController(elevatorCar2)
-
-		self.elevatorControllerList.append(controller1)
-		self.elevatorControllerList.append(controller2)
+	elevatorControllerList.append(controller1)
+	elevatorControllerList.append(controller2)
 
 if __name__ == '__main__':
 	floorList = []
@@ -210,10 +206,17 @@ if __name__ == '__main__':
 	building = Building(floorList)
 
 	elevatorCreater = ElevatorCreator()
+	externalButton = ExternalButtons()
 
-	req1 = int(input('Enter your current floor no.'))
-	ExternalButtons().pressButton(req1, Direction.UP)
+	floorReq = int(input('Enter your current floor number: '))
+	dirReq = input('Enter direction(UP or DOWN): ')
+	destDir = Direction.UP if dirReq == 'UP' else Direction.DOWN
+	externalButton.pressButton(floorReq, destDir)
 
+	floorReq = int(input('Enter your current floor number: '))
+	dirReq = input('Enter direction(UP or DOWN): ')
+	destDir = Direction.UP if dirReq == 'UP' else Direction.DOWN
+	externalButton.pressButton(floorReq, destDir)
 
 
 
