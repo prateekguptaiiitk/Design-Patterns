@@ -13,7 +13,7 @@ class ElevatorDisplay():
 	direction = None
 
 	def setDisplay(self, floor, direction):
-		self.floor = floor
+		self.floor = floor.floorNumber
 		self.direction = direction
 
 	def showDisplay(self):
@@ -27,39 +27,43 @@ class ElevatorCar():
 	currentFloor = 0
 	elevatorDirection = None
 	elevatorDoor = None
+	is_empty = True
 
 	def __init__(self, id):
 		self.display = ElevatorDisplay()
 		self.internalButtons = InternalButtons()
 		self.elevatorState = ElevatorState.IDLE
-		self.currentFloor = 0
+		self.currentFloor = BuildingCreator().floorList[0]
 		self.elevatorDirection = Direction.UP
 		self.elevatorDoor = ElevatorDoor()
 		self.elevatorID = id
+		self.is_empty = True
 
 	def showDisplay(self):
 		self.display.showDisplay()		
 
-	def moveElevator(self, dir, destinationFloor):
+	def moveElevator(self, destinationFloor):
+		self.elevatorState = ElevatorState.MOVING
 		startFloor = self.currentFloor
+		floorList = BuildingCreator().floorList
 
-		if startFloor < destinationFloor:
+		if startFloor.floorNumber < destinationFloor:
 			self.elevatorDirection = Direction.UP
-			for i in range(startFloor, destinationFloor + 1):
-				self.currentFloor = i
+			for i in range(startFloor.floorNumber, destinationFloor + 1):
+				self.currentFloor = floorList[i - 1]
 				self.display.setDisplay(self.currentFloor, self.elevatorDirection.name)
 				self.showDisplay()
 
-				if i == destinationFloor:
+				if self.currentFloor.floorNumber == destinationFloor:
 					return True
 		else:
 			self.elevatorDirection = Direction.DOWN
-			for i in range(startFloor, destinationFloor - 1, -1):
-				self.currentFloor = i
+			for i in range(startFloor.floorNumber, destinationFloor - 1, -1):
+				self.currentFloor = floorList[i - 1]
 				self.display.setDisplay(self.currentFloor, self.elevatorDirection.name)
 				self.showDisplay()
 
-				if i == destinationFloor:
+				if self.currentFloor.floorNumber == destinationFloor:
 					return True
 
 		return False
@@ -72,34 +76,37 @@ class ElevatorController():
 	def __init__(self, elevatorCar):
 		self.elevatorCar = elevatorCar
 
-	def submitNewRequest(self, currFloor, direction):
-		self.requestQueue.append((currFloor, direction))
+	def submitNewRequest(self, currFloor):
+		self.requestQueue.append(currFloor)
 		self.controlElevator()
-
-	# def submitInternalRequest(self, floor):
-	# 	pass
 
 	def controlElevator(self):
 		elevatorDoor = ElevatorDoor()
 		while self.requestQueue:
-			req = self.requestQueue.popleft()
-			status = self.elevatorCar.moveElevator(req[1], req[0])
+			destinationFloor = self.requestQueue.popleft()
+			status = self.elevatorCar.moveElevator(destinationFloor)
 			if status:
 				elevatorDoor.openDoor()
 				elevatorDoor.closeDoor()
 
-				# destFloor = int(input('Enter destination floor no. you want to go'))
-				# InternalButtons().pressButton(destFloor)
+				if not self.elevatorCar.is_empty:
+					destFloor = int(input('Enter your destination floor number: '))
+					InternalButtons().pressButton(destFloor, self.elevatorCar)
 
 class InternalButtons():
+	dispatcher = None
 	availableButtons = None
-	buttonSelected = 0
 
 	def __init__(self):
-		self.availableButtons = [1,2,3,4,5,6,7,8,9,10]
+		self.availableButtons = []
 
 	def pressButton(self, destination, elevatorCar):
 		# 1. check if destination is in the list of available floors
+		floorList = BuildingCreator().floorList
+		for i in range(1, len(floorList)):
+			if elevatorCar.elevatorID % 2 == i % 2:
+				self.availableButtons.append(i)
+
 		if destination not in self.availableButtons:
 			print('Incorrect destination floor number entered')
 			return
@@ -109,31 +116,28 @@ class InternalButtons():
 		dispatcher.submitInternalRequest(destination, elevatorCar)
 
 class InternalButtonDispatcher():
-	elevatorControllerList = None
 
 	def __init__(self):
 		self.elevatorControllerList = ElevatorCreator().elevatorControllerList
 
-	def submitInternalRequest(self, floor, elevatorCar):
+	def submitInternalRequest(self, currFloor, elevatorCar):
 		# for simplicity we are following even odd
 		for elevatorController in self.elevatorControllerList:
-			elevatorID = elevatorController.elevatorCar.id
+			elevatorID = elevatorController.elevatorCar.elevatorID
 
-			if elevatorID % 2 == floor % 2:
-				elevatorController.submitNewRequest(floor)
+			if elevatorID == elevatorCar.elevatorID:
+				elevatorController.elevatorCar.is_empty = True
+				elevatorController.submitNewRequest(currFloor)
 
 class ExternalButtons():
 	dispatcher = None
-	availableButtons = None
-	buttonSelected = 0
 
 	def __init__(self):
 		self.dispatcher = ExternalButtonDispatcher()
-		self.availableButtons = [1,2,3,4,5,6,7,8,9,10]
 
-	def pressButton(self, currFloor, direction):
+	def pressButton(self, currFloor):
 		# Submit the request to the job dispatcher
-		self.dispatcher.submitExternalRequest(currFloor, direction)
+		self.dispatcher.submitExternalRequest(currFloor)
 
 class ExternalButtonDispatcher():
 	elevatorControllerList = None
@@ -141,13 +145,14 @@ class ExternalButtonDispatcher():
 	def __init__(self):
 		self.elevatorControllerList = ElevatorCreator().elevatorControllerList
 
-	def submitExternalRequest(self, currFloor, direction):
+	def submitExternalRequest(self, currFloor):
 		# for simplicity we are following even odd
 		for elevatorController in self.elevatorControllerList:
 			elevatorID = elevatorController.elevatorCar.elevatorID
 
 			if elevatorID % 2 == currFloor % 2:
-				elevatorController.submitNewRequest(currFloor, direction)
+				elevatorController.elevatorCar.is_empty = False
+				elevatorController.submitNewRequest(currFloor)
 
 class ElevatorDoor():
 	def openDoor(self):
@@ -165,10 +170,10 @@ class Floor():
 class Building():
 	floorList = None
 
-	def __init__(self, floors):
-		self.floorList = floors
+	def __init__(self):
+		self.floorList = []
 
-	def addFloors(self, newFloor):
+	def addFloor(self, newFloor):
 		self.floorList.append(newFloor)
 
 	def removeFloor(self, removeFloor):
@@ -176,6 +181,15 @@ class Building():
 
 	def getAllFloorList(self):
 		return self.floorList
+	
+class BuildingCreator():
+	building = Building()
+
+	for i in range(1, 11):
+		floor = Floor(i)
+		building.addFloor(floor)
+
+	floorList = building.getAllFloorList()
 
 class ElevatorCreator():
 	elevatorControllerList = []
@@ -190,33 +204,21 @@ class ElevatorCreator():
 	elevatorControllerList.append(controller2)
 
 if __name__ == '__main__':
-	floorList = []
-	floor1 = Floor(1)
-	floor2 = Floor(2)
-	floor3 = Floor(3)
-	floor4 = Floor(4)
-	floor5 = Floor(5)
+	
+	buildingCreator = BuildingCreator()
 
-	floorList.append(floor1)
-	floorList.append(floor2)
-	floorList.append(floor3)
-	floorList.append(floor4)
-	floorList.append(floor5)
-
-	building = Building(floorList)
-
-	elevatorCreater = ElevatorCreator()
+	elevatorCreator = ElevatorCreator()
 	externalButton = ExternalButtons()
 
 	floorReq = int(input('Enter your current floor number: '))
 	dirReq = input('Enter direction(UP or DOWN): ')
 	destDir = Direction.UP if dirReq == 'UP' else Direction.DOWN
-	externalButton.pressButton(floorReq, destDir)
+	externalButton.pressButton(floorReq)
 
 	floorReq = int(input('Enter your current floor number: '))
 	dirReq = input('Enter direction(UP or DOWN): ')
 	destDir = Direction.UP if dirReq == 'UP' else Direction.DOWN
-	externalButton.pressButton(floorReq, destDir)
+	externalButton.pressButton(floorReq)
 
 
 
