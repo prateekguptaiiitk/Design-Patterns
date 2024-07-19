@@ -8,3 +8,4 @@ Collections of python code for different design pattern implementation
 5. [Chain of Responsibility Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/chainofresponsibilitypattern.py)
 6. [Proxy Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/proxypattern.py)
 6. [Null Object Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/nullobjectpattern.py)
+7. [Composite Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/filesystem.py)
