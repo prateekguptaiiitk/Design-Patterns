@@ -9,6 +9,7 @@ Collections of python code for different design pattern implementation
 6. [Proxy Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/proxypattern.py)
 6. [Null Object Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/nullobjectpattern.py)
 7. [Composite Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/filesystem.py)
+8. [Adapter Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/adapterpattern.py)
 
 ## Design Implementations
 Collections of python code for different design pattern implementation on real life objects
