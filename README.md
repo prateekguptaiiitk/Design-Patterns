@@ -1,4 +1,4 @@
-# Design-Patterns
+# Design Patterns
 Collections of python code for different design pattern implementation
 
 1. [Observer Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/observerpatter.py)
