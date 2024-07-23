@@ -22,3 +22,4 @@ Collections of python code for different design pattern implementation on real l
 6. [ATM Machine](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/atm.py)
 7. [File System](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/filesystem.py)
 8. [Calculator](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/calculator.py)
+9. [Splitwise](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/splitwise.py)
