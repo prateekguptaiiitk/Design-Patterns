@@ -24,4 +24,4 @@ Collections of python code for different design pattern implementation on real l
 7. [File System](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/filesystem.py)
 8. [Calculator](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/calculator.py)
 9. [Splitwise](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/splitwise.py)
-10. [Splitwise](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/cricbuzz.py)
+10. [Cricbuzz](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/cricbuzz.py)
