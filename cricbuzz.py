@@ -1,4 +1,7 @@
 import random
+from enum import Enum
+from abc import ABC, abstractmethod
+from collections import deque, defaultdict
 
 class BallDetails: 
     def __init__(self, ball_number):
@@ -13,48 +16,42 @@ class BallDetails:
     def start_ball_delivery(self, batting_team, bowling_team, over):
         self.played_by = batting_team.get_striker()
         self.bowled_by = over.bowled_by
-        # THROW BALL AND GET THE BALL TYPE, assuming here that ball type is always NORMAL
         self.ball_type = BallType.NORMAL
 
-        # wicket or no wicket
         if self.is_wicket_taken():
             self.run_type = RunType.ZERO
-            # considering only BOLD
             self.wicket = Wicket(WicketType.BOLD, bowling_team.get_current_bowler(), over, self)
-            # making only striker out for now
             batting_team.set_striker(None)
         else:
             self.run_type = self.get_run_type()
 
             if self.run_type in {RunType.ONE, RunType.THREE}:
-                # swap striker and non-striker
                 temp = batting_team.get_striker()
                 batting_team.set_striker(batting_team.get_non_striker())
                 batting_team.set_non_striker(temp)
 
-        # update player scoreboard
-        self.notify_updaters(self)
+        self.notify_updaters()
 
-    def notify_updaters(self, ball_details):
+    def notify_updaters(self):
         for observer in self.score_updater_observer_list:
-            observer.update(ball_details)
+            observer.update(self)
 
     def get_run_type(self):
         val = random.random()
         if val <= 0.2:
             return RunType.ONE
-        elif 0.3 <= val <= 0.5:
+        elif 0.2 < val <= 0.4:
             return RunType.TWO
-        elif 0.6 <= val <= 0.8:
+        elif 0.4 < val <= 0.6:
+            return RunType.THREE
+        elif 0.6 < val <= 0.8:
             return RunType.FOUR
         else:
             return RunType.SIX
 
     def is_wicket_taken(self):
-        # random function return value between 0 and 1
         return random.random() < 0.2
 
-from enum import Enum
 class BallType(Enum):
     NORMAL = "NORMAL"
     WIDEBALL = "WIDEBALL"
@@ -68,15 +65,14 @@ class InningDetails:
         self.overs = []
 
     def start(self, runs_to_win):
-        # Set batting players
         try:
             self.batting_team.choose_next_batsman()
+            self.batting_team.choose_next_batsman()  # Set both striker and non-striker
         except Exception as e:
             pass
 
         no_of_overs = self.match_type.no_of_overs()
         for over_number in range(1, no_of_overs + 1):
-            # Choose bowler
             self.bowling_team.choose_next_bowler(self.match_type.max_over_count_bowlers())
 
             over = OverDetails(over_number, self.bowling_team.get_current_bowler())
@@ -88,13 +84,31 @@ class InningDetails:
             except Exception as e:
                 break
 
-            # Swap striker and non-striker
             temp = self.batting_team.get_striker()
             self.batting_team.set_striker(self.batting_team.get_non_striker())
             self.batting_team.set_non_striker(temp)
 
     def get_total_runs(self):
         return self.batting_team.get_total_runs()
+
+    def print_batting_score_card(self):
+        print(f"{self.batting_team.name} Batting Score Card:")
+        for player in self.batting_team.players:
+            score_card = player.batting_score_card
+            if score_card.total_balls_played > 0:
+                print(f"Player: {player.name}, Runs: {score_card.total_runs}, Balls: {score_card.total_balls_played}, "
+                      f"Fours: {score_card.total_fours}, Sixes: {score_card.total_six}, Strike Rate: {score_card.strike_rate:.2f}")
+        print()
+
+    def print_bowling_score_card(self):
+        print(f"{self.bowling_team.name} Bowling Score Card:")
+        for player in self.bowling_team.players:
+            score_card = player.bowling_score_card
+            if score_card.total_overs_count > 0 or score_card.runs_given > 0 or score_card.wickets_taken > 0:
+                print(f"Player: {player.name}, Overs: {score_card.total_overs_count}, Runs: {score_card.runs_given}, "
+                      f"Wickets: {score_card.wickets_taken}, No Balls: {score_card.no_ball_count}, Wide Balls: {score_card.wide_ball_count}, "
+                      f"Economy Rate: {score_card.economy_rate:.2f}")
+        print()
 
 class OverDetails:
     def __init__(self, over_number, bowled_by):
@@ -113,7 +127,10 @@ class OverDetails:
                 self.balls.append(ball)
                 ball_count += 1
                 if ball.wicket is not None:
-                    batting_team.choose_next_batsman()
+                    try:
+                        batting_team.choose_next_batsman()
+                    except IndexError:
+                        return False
 
                 if runs_to_win != -1 and batting_team.get_total_runs() >= runs_to_win:
                     batting_team.is_winner = True
@@ -131,9 +148,8 @@ class RunType(Enum):
     FOUR = 'FOUR'
     SIX = 'SIX'
 
-from abc import ABC, abstractmethod
-
 class ScoreUpdaterObserver(ABC):
+    @abstractmethod
     def update(self, ball_details):
         pass
 
@@ -145,6 +161,8 @@ class BattingScoreUpdater(ScoreUpdaterObserver):
             run = 1
         elif RunType.TWO == ball_details.run_type:
             run = 2
+        elif RunType.THREE == ball_details.run_type:
+            run = 3
         elif RunType.FOUR == ball_details.run_type:
             run = 4
             ball_details.played_by.batting_score_card.total_fours += 1
@@ -154,23 +172,26 @@ class BattingScoreUpdater(ScoreUpdaterObserver):
         
         ball_details.played_by.batting_score_card.total_runs += run
         ball_details.played_by.batting_score_card.total_balls_played += 1
+        ball_details.played_by.batting_score_card.strike_rate = (ball_details.played_by.batting_score_card.total_runs / ball_details.played_by.batting_score_card.total_balls_played) * 100
 
         if ball_details.wicket:
-            ball_details.played_by.batting_score_card.wicket_details = ball_details.wicket
+            ball_details.played_by.batting_score_card.wicket_detail = ball_details.wicket
     
 class BowlingScoreUpdater(ScoreUpdaterObserver):
     def update(self, ball_details):
         if ball_details.ball_number == 6 and ball_details.ball_type == BallType.NORMAL:
-            ball_details.bowled_by.bowling_score_card.totalOversCount += 1
+            ball_details.bowled_by.bowling_score_card.total_overs_count += 1
 
         if RunType.ONE == ball_details.run_type:
-            ball_details.bowled_by.bowling_score_card.runs_giving += 1
+            ball_details.bowled_by.bowling_score_card.runs_given += 1
         elif RunType.TWO == ball_details.run_type:
-            ball_details.bowled_by.bowling_score_card.runs_giving += 2
+            ball_details.bowled_by.bowling_score_card.runs_given += 2
+        elif RunType.THREE == ball_details.run_type:
+            ball_details.bowled_by.bowling_score_card.runs_given += 3
         elif RunType.FOUR == ball_details.run_type:
-            ball_details.bowled_by.bowling_score_card.runs_giving += 4
+            ball_details.bowled_by.bowling_score_card.runs_given += 4
         elif RunType.SIX == ball_details.run_type:
-            ball_details.bowled_by.bowling_score_card.runs_giving += 6
+            ball_details.bowled_by.bowling_score_card.runs_given += 6
 
         if ball_details.wicket:
             ball_details.bowled_by.bowling_score_card.wickets_taken += 1
@@ -181,264 +202,124 @@ class BowlingScoreUpdater(ScoreUpdaterObserver):
         if ball_details.ball_type == BallType.WIDEBALL:
             ball_details.bowled_by.bowling_score_card.wide_ball_count += 1
 
+        if ball_details.bowled_by.bowling_score_card.total_overs_count > 0:
+            ball_details.bowled_by.bowling_score_card.economy_rate = ball_details.bowled_by.bowling_score_card.runs_given / ball_details.bowled_by.bowling_score_card.total_overs_count
+
 class BattingScoreCard:
-    total_runs = 0
-    total_balls_played = 0
-    total_fours = 0
-    total_six = 0
-    strike_rate = 0.0
-    wicket_detail = None
+    def __init__(self):
+        self.total_runs = 0
+        self.total_balls_played = 0
+        self.total_fours = 0
+        self.total_six = 0
+        self.strike_rate = 0.0
+        self.wicket_detail = None
 
 class BowlingScoreCard:
-    total_overs_count = 0
-    runs_given = 0
-    wickets_taken = 0
-    no_ball_count = 0
-    wide_ball_count = 0
-    economy_rate = 0.0
+    def __init__(self):
+        self.total_overs_count = 0
+        self.runs_given = 0
+        self.wickets_taken = 0
+        self.no_ball_count = 0
+        self.wide_ball_count = 0
+        self.economy_rate = 0.0
 
-class Person:
-    name = None
-    age = 0
-    address = None
+class PlayerDetails:
+    def __init__(self, name):
+        self.name = name
+        self.batting_score_card = BattingScoreCard()
+        self.bowling_score_card = BowlingScoreCard()
 
-from collections import deque
 class PlayerBattingController:
-    yet_to_play = None
-    striker = None
-    non_striker = None
-
-    def __init__(self, playing11):
-        self.yet_to_play = deque()
-        self.yet_to_play.extend(playing11)
+    def __init__(self, players):
+        self.players = players
+        self.striker = None
+        self.non_striker = None
+        self.out_players = []
 
     def get_next_player(self):
-        if self.yet_to_play.is_empty():
-            raise Exception()
+        if not self.players:
+            raise IndexError("No players left to bat")
+        if self.striker is None:
+            self.striker = self.players.pop(0)
+        elif self.non_striker is None:
+            self.non_striker = self.players.pop(0)
+        else:
+            self.out_players.append(self.striker)
+            self.striker = self.players.pop(0)
 
-        if not striker:
-            striker = self.yet_to_play.poll()
-
-        if not self.non_striker:
-            self.non_striker = self.yet_to_play.poll()
-    
     def get_striker(self):
         return self.striker
+
+    def set_striker(self, player):
+        self.striker = player
 
     def get_non_striker(self):
         return self.non_striker
 
-    def set_striker(self, player_details):
-        self.striker = player_details
+    def set_non_striker(self, player):
+        self.non_striker = player
 
-    def set_non_striker(self, player_details):
-        self.non_striker = player_details
-
-from collections import defaultdict
 class PlayerBowlingController:
-    bowlers_list = None
-    bowler_vs_over_count = None
-    current_bowler = None
-
-    def __init__(self, bowlers):
-        self.set_bowlers_list(bowlers)
-
-    def set_bowlers_list(self, bowlers_list):
-        self.bowlers_list = deque()
-        self.bowler_vs_over_count = defaultdict(int)
-        for bowler in bowlers_list:
-            self.bowlers_list.append(bowler)
-            self.bowler_vs_over_count[bowler] = 0
+    def __init__(self, players):
+        self.players = deque(players)
+        self.current_bowler = None
+        self.bowler_over_count = defaultdict(int)
 
     def get_next_bowler(self, max_over_count_per_bowler):
-        player_details = self.bowlers_list.poll()
-        if self.bowler_vs_over_count[player_details] + 1 == max_over_count_per_bowler:
-            self.current_bowler = player_details
-        else:
-            self.current_bowler = player_details
-            self.bowlers_list.append(player_details)
-            self.bowler_vs_over_count[player_details] += 1
+        while self.bowler_over_count[self.players[0]] >= max_over_count_per_bowler:
+            self.players.rotate(-1)
         
+        self.current_bowler = self.players[0]
+        self.bowler_over_count[self.current_bowler] += 1
+
     def get_current_bowler(self):
         return self.current_bowler
 
-class PlayerDetails:
-    person = None
-    player_type = None
-    batting_score_card = None
-    bowling_score_card = None
-
-    def __init__(self, person, player_type):
-        self.person = person
-        self.player_type = player_type
-        self.batting_score_card = BattingScoreCard()
-        self.bowling_score_card = BowlingScoreCard()
-
-    def print_batting_score_card(self):
-        print("PlayerName: ", self.person.name, " -- totalRuns: ", self.batting_score_card.total_runs, " -- totalBallsPlayed: ", self.bowlingScoreCard.total_balls_played, " -- 4s: ", self.batting_score_card.total_fours, " -- 6s: ", self.batting_score_card.totalSix, " -- outby: ", end='')
-
-        if self.batting_score_card.wicket_details:
-            print(self.batting_score_card.wicket_details.taken_by.person.name)
-        else:
-            print("notout")
-
-
-    def print_bowling_score_card(self):
-        print("PlayerName: ", self.person.name, " -- totalOversThrown: ", self.bowling_score_card.total_overs_count, " -- totalRunsGiven: ", self.bowling_score_card.runs_given, " -- WicketsTaken: ", self.bowling_score_card.wickets_taken)
-
-class PlayerType(Enum):
-    BATSMAN = 'BATSMAN'
-    BOWLER = "BOWLER"
-    WICKETKEEPER = "WICKETKEEPER"
-    CAPTAIN = "CAPTAIN"
-    ALLROUNDER = "ALLROUNDER"
-
-class Team:
-    team_name = None
-    playing11 = deque()
-    bench = None
-    batting_controller = None
-    bowling_controller = None
-    is_winner = False
-
-    def __init__(self, teamName, playing11, bench, bowlers):
-        self.team_name = teamName
-        self.playing11 = playing11
-        self.bench = bench
-        self.batting_controller = PlayerBattingController(playing11)
-        self.bowling_controller = PlayerBowlingController(bowlers)
-    
-    def get_team_name(self):
-        return self.team_name
+class TeamDetails:
+    def __init__(self, name, players):
+        self.name = name
+        self.players = players
+        self.player_batting_controller = PlayerBattingController(players.copy())
+        self.player_bowling_controller = PlayerBowlingController(players.copy())
+        self.is_winner = False
 
     def choose_next_batsman(self):
-        self.batting_controller.get_next_player()
+        self.player_batting_controller.get_next_player()
 
-    def chooseNextBowler(self, max_over_count_per_bowler):
-        self.bowling_controller.get_next_bowler(max_over_count_per_bowler)
-
-    def getStriker(self):
-        return self.batting_controller.get_striker()
-
-    def get_non_striker(self):
-        return self.batting_controller.get_non_striker()
-
-    def set_striker(self, player):
-        self.battingController.setStriker(player)
-
-    def set_non_striker(self, player):
-        self.batting_controller.set_non_striker(player)
+    def choose_next_bowler(self, max_over_count_per_bowler):
+        self.player_bowling_controller.get_next_bowler(max_over_count_per_bowler)
 
     def get_current_bowler(self):
-        return self.bowling_controller.get_current_bowler()
+        return self.player_bowling_controller.get_current_bowler()
 
-    def print_batting_score_card(self):
-        for self.player_details in self.playing11:
-            self.player_details.print_batting_score_card()
+    def get_striker(self):
+        return self.player_batting_controller.get_striker()
 
-    def print_bowling_score_card(self):
-        for self.player_details in self.playing11:
-            if(self.player_details.bowling_score_card.total_overs_count > 0):
-                self.player_details.print_bowling_score_card()
+    def set_striker(self, player_details):
+        self.player_batting_controller.set_striker(player_details)
+
+    def get_non_striker(self):
+        return self.player_batting_controller.get_non_striker()
+
+    def set_non_striker(self, player_details):
+        self.player_batting_controller.set_non_striker(player_details)
 
     def get_total_runs(self):
-        total_run = 0
-        for player in self.playing11:
-            total_run += player.batting_score_card.total_runs
-        
-        return total_run
+        total_runs = 0
+        for player in self.players:
+            total_runs += player.batting_score_card.total_runs
+        return total_runs
 
 class Wicket:
-    wicket_type = None
-    taken_by = None
-    over_detail = None
-    ball_detail = None
-
-    def __init__(self, wicket_type, taken_by, over_detail, ball_detail):
+    def __init__(self, wicket_type, taken_by, over, ball):
         self.wicket_type = wicket_type
         self.taken_by = taken_by
-        self.over_detail = over_detail
-        self.ball_detail = ball_detail
+        self.over = over
+        self.ball = ball
 
 class WicketType(Enum):
-    RUNOUT = 'RUNOUT'
     BOLD = 'BOLD'
-    CATCH = 'CATCH'
 
-import random
-class Match:
-    team_A = None
-    team_B = None
-    match_date = None
-    venue = None
-    toss_winner = None
-    innings = None
-    match_type = None
-
-    def __init__(self, team_A, team_B, match_date, venue, match_type):
-        self.team_A = team_A
-        self.team_B = team_B
-        self.match_date = match_date
-        self.venue = venue
-        self.match_type = match_type
-        innings = []
-
-    def start_match(self):
-        # 1. Toss
-        toss_winner = self.toss(self.team_A, self.team_B)
-
-        # start The Inning, there are 2 innings in a match
-        for inning in range(3):
-            # assuming here that tossWinner batFirst
-            is_chasing = False
-            if inning == 1:
-                battingTeam = toss_winner
-                bowlingTeam = None
-                if toss_winner.get_team_name() == self.team_A.get_team_name():
-                    bowlingTeam = self.team_B
-                else:
-                    bowlingTeam = self.team_A
-                inningDetails = InningDetails(battingTeam, bowlingTeam, self.match_type)
-                inningDetails.start(-1)
-            else:
-                bowlingTeam = self.toss_winner
-                battingTeam = None
-                if toss_winner.get_team_name() == self.team_A.get_team_name():
-                    battingTeam = self.team_B
-                else:
-                    battingTeam = self.team_A
-                inning_details = InningDetails(battingTeam, bowlingTeam, self.match_type)
-                inning_details.start(self.innings[0].get_total_runs())
-                if bowlingTeam.getTotalRuns() > battingTeam.get_total_runs():
-                    bowlingTeam.isWinner = True
-
-            self.innings[inning-1] = inningDetails
-
-            # print inning details
-            print()
-            print("INNING ", inning, " -- total Run: ", battingTeam.getTotalRuns())
-            print("---Batting ScoreCard : ", battingTeam.teamName + "---")
-
-            battingTeam.print_batting_score_card()
-
-            print()
-            print("---Bowling ScoreCard : " + bowlingTeam.teamName + "---")
-            bowlingTeam.print_bowling_score_card()
-
-        print()
-        if self.team_A.is_winner:
-            print("---WINNER---" + self.team_A.teamName)
-
-        else:
-            print("---WINNER---" + self.team_B.teamName)
-
-    def toss(self, team_A, team_B):
-        # random function return value between 0 and 1
-        if random.uniform(0, 1) < 0.5:
-            return team_A
-        else:
-            return team_B
-    
 class MatchType(ABC):
     @abstractmethod
     def no_of_overs(self):
@@ -448,73 +329,55 @@ class MatchType(ABC):
     def max_over_count_bowlers(self):
         pass
 
-class OneDayMatchType(MatchType):
+class ODI(MatchType):
     def no_of_overs(self):
         return 50
 
     def max_over_count_bowlers(self):
         return 10
 
-class T20MatchType(MatchType):
+class T20(MatchType):
     def no_of_overs(self):
         return 20
 
     def max_over_count_bowlers(self):
-        return 5
+        return 4
 
-class Main:
-    def main(self):
-        ob = Main()
+def main():
+    # Create players
+    players_team1 = [PlayerDetails(f"Player1_{i+1}") for i in range(11)]
+    players_team2 = [PlayerDetails(f"Player2_{i+1}") for i in range(11)]
 
-        team_A = ob.add_team("India")
-        team_B = ob.add_team("SriLanka")
+    # Create teams
+    team1 = TeamDetails("Team 1", players_team1)
+    team2 = TeamDetails("Team 2", players_team2)
 
-        match_type = T20MatchType()
-        match = Match(team_A, team_B, None, "SMS STADIUM", match_type)
-        match.start_match()
+    # Choose match type
+    match_type = T20()
 
-    def add_team(self, name):
-        player_details = []
+    # Create innings
+    inning1 = InningDetails(team1, team2, match_type)
+    inning2 = InningDetails(team2, team1, match_type)
 
-        p1 = self.add_player(name+"1", PlayerType.ALLROUNDER)
-        p2 = self.add_player(name+"2", PlayerType.ALLROUNDER)
-        p3 = self.add_player(name+"3", PlayerType.ALLROUNDER)
-        p4 = self.add_player(name+"4", PlayerType.ALLROUNDER)
-        p5 = self.add_player(name+"5", PlayerType.ALLROUNDER)
-        p6 = self.add_player(name+"6", PlayerType.ALLROUNDER)
-        p7 = self.add_player(name+"7", PlayerType.ALLROUNDER)
-        p8 = self.add_player(name+"8", PlayerType.ALLROUNDER)
-        p9 = self.add_player(name+"9", PlayerType.ALLROUNDER)
-        p10 = self.add_player(name+"10", PlayerType.ALLROUNDER)
-        p11 = self.add_player(name+"11", PlayerType.ALLROUNDER)
-        
-        player_details.append(p1)
-        player_details.append(p2)
-        player_details.append(p3)
-        player_details.append(p4)
-        player_details.append(p5)
-        player_details.append(p6)
-        player_details.append(p7)
-        player_details.append(p8)
-        player_details.append(p9)
-        player_details.append(p10)
-        player_details.append(p11)
+    # Start first inning
+    inning1.start(runs_to_win=-1)
+    print(f"Team 1 scored: {inning1.get_total_runs()} runs")
+    inning1.print_batting_score_card()
+    inning1.print_bowling_score_card()
 
-        bowlers = []
-        bowlers.append(p8)
-        bowlers.append(p9)
-        bowlers.append(p10)
-        bowlers.append(p11)
+    # Start second inning
+    inning2.start(runs_to_win=inning1.get_total_runs())
+    print(f"Team 2 scored: {inning2.get_total_runs()} runs")
+    inning2.print_batting_score_card()
+    inning2.print_bowling_score_card()
 
-        team = Team(name, player_details, [], bowlers)
-        return team
+    # Determine winner
+    if inning1.get_total_runs() > inning2.get_total_runs():
+        print("Team 1 wins")
+    elif inning1.get_total_runs() < inning2.get_total_runs():
+        print("Team 2 wins")
+    else:
+        print("Match is a draw")
 
-    def add_player(self, name, player_type):
-        person = Person()
-        person.name = name
-        player_details = PlayerDetails(person, player_type)
-        return player_details
-
-if __name__ == '__main__':
-    main = Main()
-    main.main()
+if __name__ == "__main__":
+    main()
