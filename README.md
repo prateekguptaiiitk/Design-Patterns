@@ -11,6 +11,8 @@ Collections of python code for different design pattern implementation
 7. [Composite Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/filesystem.py)
 8. [Adapter Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/adapterpattern.py)
 8. [Builder Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/builderpattern.py)
+8. [Facade Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/facadepattern.py)
+8. [Bridge Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/bridgepattern.py)
 
 ## Design Implementations
 Collections of python code for different design pattern implementation on real life objects
