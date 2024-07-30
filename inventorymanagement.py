@@ -115,3 +115,44 @@ class Invoice:
         self.total_item_price = 200
         self.total_tax = 20
         self.total_final_price = 220
+
+class WarehouseSelectionStrategy(ABC):
+    @abstractmethod
+    def selectWarehouse(self, warehouse_list):
+        pass
+
+class NearestWarehouseSelectionStrategy(WarehouseSelectionStrategy):
+    def select_warehouse(self, warehouse_list):
+       # algo to pick the nearest algo, for now I am just picking the first warehouse for demo purpose
+        return warehouse_list[0]
+
+class Order:
+    def __init__(self, user, warehouse):
+        self.user = user
+        self.product_category_and_count_map = user.get_user_cart().get_cart_items()
+        self.warehouse = warehouse
+        self.delivery_address = user.address
+        self.invoice = Invoice()
+        self.invoice.generate_invoice(self)
+        self.payment = None
+        self.order_status = None
+
+    def checkout(self):
+        # 1. update inventory
+        self.warehouse.remove_item_from_inventory(self.product_category_and_count_map)
+
+        # 2. make Payment
+        is_payment_success = self.makePayment(UPIPaymentMode())
+
+        # 3. make cart empty
+        if is_payment_success:
+            self.user.get_user_cart().empty_cart()
+        else:
+            self.warehouse.add_item_to_inventory(self.product_category_and_count_map)
+
+    def make_payment(self, payment_mode):
+        payment = Payment(payment_mode)
+        return payment.make_payment()
+    
+    def generate_order_invoice(self):
+        self.invoice.generate_invoice(self)
