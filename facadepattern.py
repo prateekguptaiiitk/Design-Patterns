@@ -1,29 +1,43 @@
-class EmployeeClient:
-    def get_employee_details(self):
-        employee_facade = EmployeeFacade()
-        employee_details = employee_facade.get_employee_details(121222)
+class ProductDAO:
+    def get_product(self, productID):
+        # get product based on product id and return it
+        print('Product with ID = ', productID)
+        return productID
 
-class EmployeeFacade:
-    employee_DAO = None
+class Payment:
+    def make_payment(self):
+        return True
 
+class Invoice:
+    def generate_invoice(self):
+        # this will generate the invoice
+        print('invoice generated')
+
+class SendNotification:
+    def send_notification(self):
+        # this will send notification to clients
+        print('notification sent')
+
+class OrderFacade:
     def __init__(self):
-        self.employee_DAO = EmployeeDAO()
-
-    def insert(self):
-        self.employee_DAO.insert()
+        self.productDAO = ProductDAO()
+        self.invoice = Invoice()
+        self.payment = Payment()
+        self.notification = SendNotification()
     
-    def get_employee_details(self, empID):
-        return self.employee_DAO.get_employee_details(empID)
+    def create_order(self):
+        product = self.productDAO.get_product(121)
+        self.payment.make_payment()
+        self.invoice.generate_invoice()
+        self.notification.send_notification()
+        # order creation successfull
+        print('Order created successfully!')
 
-class EmployeeDAO:
-    def insert(self):
-        # insert into employee table
-        pass
-    
-    def update_employee_name(self):
-        # updating employee name
-        pass
+class OrderClient:
+    @classmethod
+    def main(self):
+        order_facade = OrderFacade()
+        order_facade.create_order()
 
-    def get_employee_details(self, emailID):
-        # get employee details based on Emp ID
-        return Employee()
+if __name__ == '__main__':
+    OrderClient.main()
