@@ -26,6 +26,7 @@ Collections of python code for different design pattern implementation
 12. [Bridge Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/bridgepattern.py)
 13. [Flyweight Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/flyweightpattern.py)
 14. [Command Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/commandpattern.py)
+15. [Iterator Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/iteratorpattern.py)
 
 ## Design Implementations
 
