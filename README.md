@@ -28,7 +28,7 @@ Collections of python code for different design pattern implementation
 14. [Command Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/commandpattern.py)
 15. [Iterator Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/iteratorpattern.py)
 
-## Design Implementations
+## Practical Implementations
 
 Collections of python code for different design pattern implementation on real life objects
 
