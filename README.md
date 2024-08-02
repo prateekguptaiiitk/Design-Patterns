@@ -1,4 +1,5 @@
 # Design Patterns
+
 Collections of python code for different design pattern implementation
 
 1. [Observer Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/observerpatter.py)
@@ -7,14 +8,16 @@ Collections of python code for different design pattern implementation
 4. [Factory Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/factorypattern.py)
 5. [Chain of Responsibility Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/chainofresponsibilitypattern.py)
 6. [Proxy Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/proxypattern.py)
-6. [Null Object Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/nullobjectpattern.py)
-7. [Composite Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/filesystem.py)
-8. [Adapter Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/adapterpattern.py)
-8. [Builder Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/builderpattern.py)
-8. [Facade Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/facadepattern.py)
-8. [Bridge Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/bridgepattern.py)
+7. [Null Object Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/nullobjectpattern.py)
+8. [Composite Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/filesystem.py)
+9. [Adapter Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/adapterpattern.py)
+10. [Builder Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/builderpattern.py)
+11. [Facade Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/facadepattern.py)
+12. [Bridge Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/bridgepattern.py)
+13. [Flyweight Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/flyweightpattern.py)
 
 ## Design Implementations
+
 Collections of python code for different design pattern implementation on real life objects
 
 1. [Tic-Tac-Toe](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/tictactoe.py)
