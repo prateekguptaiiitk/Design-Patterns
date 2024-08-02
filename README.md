@@ -1,3 +1,5 @@
+<img src='https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/cover.png' />
+
 # Design Patterns
 
 Collections of python code for different design pattern implementation
