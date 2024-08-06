@@ -28,39 +28,29 @@ class DeluxRoom(RoomElement):
 
 class RoomVisitor(ABC):
     @abstractmethod
-    def visit_single_room(self, single_room):
-        pass
-
-    @abstractmethod
-    def visit_double_room(self, double_room):
-        pass
-
-    @abstractmethod
-    def visit_delux_room(self, delux_room):
+    def visit(self, room):
         pass
 
 class RoomPricingVisitor(RoomVisitor):
-    def visit_single_room(self, single_room):
-        print('Pricing computation logic of single room')
-        single_room.room_price = 1000
-    
-    def visit_double_room(self, double_room):
-        print('Pricing computation logic of double room')
-        double_room.room_price = 1000
-
-    def visit_delux_room(self, delux_room):
-        print('Pricing computation logic of delux room')
-        delux_room.room_price = 1000
+    def visit(self, room):
+        if isinstance(room, SingleRoom):
+            print('Pricing computation logic of single room')
+            room.room_price = 1000
+        elif isinstance(room, DoubleRoom):
+            print('Pricing computation logic of double room')
+            room.room_price = 2000
+        elif isinstance(room, DeluxRoom):
+            print('Pricing computation logic of delux room')
+            room.room_price = 3000
 
 class RoomMaintenanceVisitor(RoomVisitor):
-    def visit_single_room(self, single_room):
-        print('Performing maintenance of single room')
-    
-    def visit_double_room(self, double_room):
-        print('Performing maintenance of double room')
-
-    def visit_delux_room(self, delux_room):
-        print('Performing maintenance of delux room')
+    def visit(self, room):
+        if isinstance(room, SingleRoom):
+            print('Performing maintenance of single room')
+        elif isinstance(room, DoubleRoom):
+            print('Performing maintenance of double room')
+        elif isinstance(room, DeluxRoom):
+            print('Performing maintenance of delux room')
 
 if __name__ == '__main__':
     single_room_obj = SingleRoom()
@@ -69,6 +59,7 @@ if __name__ == '__main__':
 
     # performing an operation on the objects
     pricing_visitor_obj = RoomPricingVisitor()
+
     single_room_obj.accept(pricing_visitor_obj)
     print(single_room_obj.room_price)
 
