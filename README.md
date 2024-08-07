@@ -29,6 +29,7 @@ Collections of python code for different design pattern implementation
 15. [Iterator Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/iteratorpattern.py)
 16. [Mediator Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/mediatorpattern.py)
 16. [Visitor Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/visitorpattern.py)
+17. [State Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/vendingmachine.py)
 
 ## Practical Implementations
 
