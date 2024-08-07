@@ -31,6 +31,7 @@ Collections of python code for different design pattern implementation
 16. [Visitor Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/visitorpattern.py)
 17. [State Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/vendingmachine.py)
 18. [Memento Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/mementopattern.py)
+19. [Template Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/templatepattern.py)
 
 ## Practical Implementations
 
