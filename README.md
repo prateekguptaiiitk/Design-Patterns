@@ -33,6 +33,8 @@ Collections of python code for different design pattern implementation
 18. [Memento Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/mementopattern.py)
 19. [Template Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/templatepattern.py)
 20. [Prototype Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/prototypepattern.py)
+20. [Singleton Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/singletonpattern.py)
+20. [Abstract Factory Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/abstractfactorypattern.py)
 
 ## Practical Implementations
 
