@@ -51,3 +51,7 @@ Collections of python code for different design pattern implementation on real l
 9. [Splitwise](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/splitwise.py) ([uml](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/splitwise_uml.jpg))
 10. [Cricbuzz](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/cricbuzz.py)
 11. [Inventory Management](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/inventorymanagement.py)
+
+## Credits
+
+All credits to [Shreyansh Jain](https://www.linkedin.com/in/jainshrayansh/) for his amazing [LLD playlist](https://youtube.com/playlist?list=PL6W8uoQQ2c61X_9e6Net0WdYZidm7zooW&si=BJJuN_lne7dJCz3e)
