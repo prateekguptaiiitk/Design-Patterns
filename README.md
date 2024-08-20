@@ -40,14 +40,36 @@ Collections of python code for different design pattern implementation
 
 Collections of python code for different design pattern implementation on real life objects
 
-1. [Tic-Tac-Toe](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/tictactoe.py)
-2. [Elevator System](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/elevatorsystem.py)
+1. [Tic-Tac-Toe](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/tictactoe.py) ([uml](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/tictactoe_uml.jpg))
+2. [Elevator System](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/elevatorsystem.py) ([uml](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/elevatorsystem_uml.jpg))
 3. [Hash Map Data Structure](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/myhashmap.py)
-4. [Vending Machine](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/vendingmachine.py)
-5. [BookMyShow (Ticket Booking Service)](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/bookmyshow.py)
-6. [ATM Machine](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/atm.py)
+4. [Vending Machine](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/vendingmachine.py) ([uml](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/vendingmachine_uml.jpg))
+5. [BookMyShow (Ticket Booking Service)](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/bookmyshow.py) ([uml](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/bookmyshow_uml.jpg))
+6. [ATM Machine](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/atm.py) ([uml](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/atm_uml.jpg))
 7. [File System](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/filesystem.py)
 8. [Calculator](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/calculator.py)
-9. [Splitwise](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/splitwise.py)
+9. [Splitwise](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/splitwise.py) ([uml](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/splitwise_uml.jpg))
 10. [Cricbuzz](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/cricbuzz.py)
 11. [Inventory Management](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/inventorymanagement.py)
+
+## Credits
+
+All credits to [Shreyansh Jain](https://www.linkedin.com/in/jainshrayansh/) for his amazing [LLD playlist](https://youtube.com/playlist?list=PL6W8uoQQ2c61X_9e6Net0WdYZidm7zooW&si=BJJuN_lne7dJCz3e)
+
+## Author
+
+<table>
+<tr>
+<td>
+     <img src="https://avatars2.githubusercontent.com/u/29523950?s=400&u=878e242ca2c624eb45a62bf62ae580a370b7a0ae&v=4" width="180"/>
+     
+     Prateek Gupta
+
+<p align="center">
+<a href = "https://github.com/prateekguptaiiitk"><img src = "http://www.iconninja.com/files/241/825/211/round-collaboration-social-github-code-circle-network-icon.svg" width="36" height = "36"/></a>
+<a href = "https://twitter.com/prateekwrites"><img src = "https://www.shareicon.net/download/2016/07/06/107115_media.svg" width="36" height="36"/></a>
+<a href = "https://www.linkedin.com/in/prateekjpg/"><img src = "http://www.iconninja.com/files/863/607/751/network-linkedin-social-connection-circular-circle-media-icon.svg" width="36" height="36"/></a>
+</p>
+</td>
+</tr> 
+  </table>
