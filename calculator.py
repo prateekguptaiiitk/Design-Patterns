@@ -35,7 +35,7 @@ class Expression(ArithmeticExpression):
         print("Expression value is :", value)
         return value
 
-class ArithmenticNumber(ArithmeticExpression):
+class Literal(ArithmeticExpression):
     value = 0
 
     def __init__(self, value):
@@ -57,9 +57,9 @@ if __name__ == '__main__':
 
     '''
 
-    two = ArithmenticNumber(2)
-    one = ArithmenticNumber(1)
-    seven = ArithmenticNumber(7)
+    two = Literal(2)
+    one = Literal(1)
+    seven = Literal(7)
 
     addExpression = Expression(one,seven, Operation.ADD)
     parentExpression = Expression(two,addExpression, Operation.MULTIPLY)
