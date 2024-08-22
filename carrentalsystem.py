@@ -17,81 +17,81 @@ class Vehicle(ABC):
         self.status = None
 
     def get_vehicle_id(self):
-        return self.vehicleID
+        return self.vehicle_id
 
-    def set_vehicle_id(self, vehicleID):
-        self.vehicleID = vehicleID
+    def set_vehicle_id(self, vehicle_id):
+        self.vehicle_id = vehicle_id
 
     def get_vehicle_number(self):
-        return self.vehicleNumber
+        return self.vehicle_number
 
-    def setVehicleNumber(self, vehicleNumber):
-        self.vehicleNumber = vehicleNumber
+    def set_vehicle_number(self, vehicle_number):
+        self.vehicle_number = vehicle_number
 
-    def getVehicleType(self):
-        return self.vehicleType
+    def get_vehicle_type(self):
+        return self.vehicle_type
 
-    def setVehicleType(self, vehicleType):
-        self.vehicleType = vehicleType
+    def set_vehicle_type(self, vehicle_type):
+        self.vehicle_type = vehicle_type
 
-    def getCompanyName(self):
-        return self.companyName
+    def get_company_name(self):
+        return self.company_name
 
-    def setCompanyName(self, companyName):
-        self.companyName = companyName
+    def set_company_name(self, company_name):
+        self.company_name = company_name
 
-    def getModelName(self):
-        return self.modelName
+    def get_model_name(self):
+        return self.model_name
 
-    def setModelName(self, modelName):
-        self.modelName = modelName
+    def set_model_name(self, model_name):
+        self.model_name = model_name
 
-    def getKmDriven(self):
-        return self.kmDriven
+    def get_km_driven(self):
+        return self.km_driven
 
-    def setKmDriven(self, kmDriven):
-        self.kmDriven = kmDriven
+    def set_km_driven(self, km_driven):
+        self.km_driven = km_driven
 
-    def getManufacturingDate(self):
-        return self.manufacturingDate
+    def get_manufacturing_date(self):
+        return self.manufacturing_date
 
-    def setManufacturingDate(self, manufacturingDate):
-        self.manufacturingDate = manufacturingDate
+    def set_manufacturing_date(self, manufacturing_date):
+        self.manufacturing_date = manufacturing_date
 
-    def getAverage(self):
+    def get_average(self):
         return self.average
 
-    def setAverage(self, average):
+    def set_average(self, average):
         self.average = average
 
-    def getCc(self):
+    def get_cc(self):
         return self.cc
 
-    def setCc(self, cc):
+    def set_cc(self, cc):
         self.cc = cc
 
-    def getDailyRentalCost(self):
-        return self.dailyRentalCost
+    def get_daily_rental_cost(self):
+        return self.daily_rental_cost
 
-    def setDailyRentalCost(self, dailyRentalCost):
-        self.dailyRentalCost = dailyRentalCost
+    def set_daily_rental_cost(self, daily_rental_cost):
+        self.daily_rental_cost = daily_rental_cost
 
-    def getHourlyRentalCost(self):
-        return self.hourlyRentalCost
+    def get_hourly_rental_cost(self):
+        return self.hourly_rental_cost
 
-    def setHourlyRentalCost(self, hourlyRentalCost):
-        self.hourlyRentalCost = hourlyRentalCost
+    def set_hourly_rental_cost(self, hourly_rental_cost):
+        self.hourly_rental_cost = hourly_rental_cost
 
-    def getNoOfSeat(self):
-        return self.noOfSeat
+    def get_no_of_seat(self):
+        return self.no_of_seat
 
-    def setNoOfSeat(self, noOfSeat):
-        self.noOfSeat = noOfSeat
+    def set_no_of_seat(self, no_of_seat):
+        self.no_of_seat = no_of_seat
 
-    def getStatus(self):
+    def get_status(self):
         return self.status
 
-    def setStatus(self, status):
+    def set_status(self, status):
         self.status = status
 
 class Bike(Vehicle):
@@ -112,10 +112,10 @@ class VehicleType(Enum):
 class Bill:
     def __init__(self, reservation):
         self.reservation = reservation
-        self.totalBillAmount = self.computeBillAmount()
-        self.isBillPaid = False
+        self.total_bill_amount = self.compute_bill_amount()
+        self.is_bill_paid = False
 
-    def computeBillAmount(self):
+    def compute_bill_amount(self):
         return 100.0
 
 class Location:
@@ -145,29 +145,29 @@ class PaymentMode(Enum):
 
 class Reservation:
     def __init__(self):
-        self.reservationId = 0
+        self.reservation_id = 0
         self.user = None
         self.vehicle = None
-        self.bookingDate = None
-        self.dateBookedFrom = None
-        self.dateBookedTo = None
-        self.fromTimeStamp = 0
-        self.toTimeStamp = 0
-        self.pickUpLocation = None
-        self.dropLocation = None
-        self.reservationType = None
-        self.reservationStatus = None
+        self.booking_date = None
+        self.date_booked_from = None
+        self.date_booked_to = None
+        self.from_time_stamp = 0
+        self.to_time_stamp = 0
+        self.pick_up_location = None
+        self.drop_location = None
+        self.reservation_type = None
+        self.reservation_status = None
         self.location = None
     
     def create_reservation(self, user, vehicle):
         # generate new id
-        self.reservationId = 12232
+        self.reservation_id = 12232
         self.user = user
         self.vehicle = vehicle
-        self.reservationType = ReservationType.DAILY
-        self.reservationStatus = ReservationStatus.SCHEDULED
+        self.reservation_type = ReservationType.DAILY
+        self.reservation_status = ReservationStatus.SCHEDULED
 
-        return self.reservationId
+        return self.reservation_id
     
     # CRUD operations
 
@@ -183,26 +183,26 @@ class ReservationType(Enum):
 
 class Store:
     def __init__(self):
-        self.storeId = 0
-        self.inventoryManagement = None
-        self.storeLocation = None
+        self.store_id = 0
+        self.inventory_management = None
+        self.store_location = None
         self.reservations = []
 
-    def getVehicles(self, vehicleType):
-        return self.inventoryManagement.getVehicles()
+    def get_vehicles(self, vehicle_type):
+        return self.inventory_management.get_vehicles()
 
     # addVehicles, update vehicles, use inventory management to update those.
 
-    def setVehicles(self, vehicles):
-        self.inventoryManagement = VehicleInventoryManagement(vehicles)
+    def set_vehicles(self, vehicles):
+        self.inventory_management = VehicleInventoryManagement(vehicles)
 
-    def createReservation(self, vehicle, user):
+    def create_reservation(self, vehicle, user):
         reservation = Reservation()
-        reservation.createReserve(user, vehicle)
+        reservation.create_reserve(user, vehicle)
         self.reservations.append(reservation)
         return reservation
 
-    def completeReservation(self, reservationID):
+    def complete_reservation(self, reservation_id):
         # take out the reservation from the list and call complete the reservation method.
         return True
 
@@ -210,47 +210,47 @@ class Store:
 
 class User:
     def __init__(self):
-        self.userId = 0
-        self.userName = 0
+        self.user_id = 0
+        self.user_name = 0
         self.drivingLicense = 0
 
-    def getUserId(self):
-        return self.userId
+    def get_user_id(self):
+        return self.user_id
 
-    def setUserId(self, userId):
-        self.userId = userId
+    def set_user_id(self, user_id):
+        self.user_id = user_id
     
-    def getUserName(self):
-        return self.userName
+    def get_user_name(self):
+        return self.user_name
 
-    def setUserName(self, userName):
-        self.userName = userName
+    def set_user_name(self, user_name):
+        self.user_name = user_name
 
-    def getDrivingLicense(self):
-        return self.drivingLicense
+    def get_driving_license(self):
+        return self.driving_license
 
-    def setDrivingLicense(self, drivingLicense):
-        self.drivingLicense = drivingLicense
+    def set_driving_license(self, driving_license):
+        self.driving_license = driving_license
 
 class VehicleInventoryManagement:
     def __init__(self, vehicles):
         self.vehicles = vehicles
 
-    def getVehicles(self):
+    def get_vehicles(self):
         # filtering
         return self.vehicles
 
-    def setVehicles(self, vehicles):
+    def set_vehicles(self, vehicles):
         self.vehicles = vehicles
 
 class VehicleRentalSystem:
     def __init__(self, stores, users):
-        self.storeList = stores
-        self.userList = users
+        self.store_list = stores
+        self.user_list = users
 
-    def getStore(self, location):
+    def get_store(self, location):
         # based on location, we will filter out the Store from storeList.
-        return self.storeList[0]
+        return self.store_list[0]
 
     # addUsers
 
