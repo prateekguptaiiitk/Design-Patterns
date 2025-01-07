@@ -56,6 +56,10 @@ Collections of python code for different design pattern implementation on real l
 
 All credits to [Shreyansh Jain](https://www.linkedin.com/in/jainshrayansh/) for his amazing [LLD playlist](https://youtube.com/playlist?list=PL6W8uoQQ2c61X_9e6Net0WdYZidm7zooW&si=BJJuN_lne7dJCz3e)
 
+## Further Resources
+
+Article on Hackernoon by Nainia Youness - [How To Remember Design Patterns](https://hackernoon.com/how-to-remember-design-patterns-ap1z35sl)
+
 ## Author
 
 <table>
