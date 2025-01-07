@@ -58,7 +58,7 @@ All credits to [Shreyansh Jain](https://www.linkedin.com/in/jainshrayansh/) for 
 
 ## Further Resources
 
-Article on Hackernoon by Nainia Youness - [How To Remember Design Patterns](https://hackernoon.com/how-to-remember-design-patterns-ap1z35sl)
+1. [How To Remember Design Patterns](https://hackernoon.com/how-to-remember-design-patterns-ap1z35sl)
 
 ## Author
 
