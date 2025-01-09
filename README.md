@@ -59,6 +59,7 @@ All credits to [Shreyansh Jain](https://www.linkedin.com/in/jainshrayansh/) for 
 ## Further Resources
 
 1. [How To Remember Design Patterns](https://hackernoon.com/how-to-remember-design-patterns-ap1z35sl)
+2. [Design Patterns Interview Questions](https://www.interviewbit.com/design-patterns-interview-questions/)
 
 ## Author
 
