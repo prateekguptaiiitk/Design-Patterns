@@ -1,14 +1,6 @@
 # 1. EAGER INITIALIZATION METHOD
 class DBConnection_1:
-    _con_object = None
-
-    def __new__(cls):
-        if cls._con_object is None:
-            cls._con_object = super(DBConnection_1, cls).__new__(cls)
-        return cls._con_object
-
-    def __init__(self):
-        pass
+    _con_object = object()
 
     @staticmethod
     def get_instance():
@@ -27,9 +19,10 @@ class DBConnection_2:
             DBConnection_2._con_object = DBConnection_2()
         return DBConnection_2._con_object
 
-# 3. EAGER AND LAZY INITIALIZATION WITH THREAD SAFETY (DOUBLE LOCKING)
+# 3. LAZY INITIALIZATION WITH THREAD SAFETY (DOUBLE LOCKING)
 import threading
 
+# OPTION-I
 class DBConnection_3:
     _con_object = None
     _lock = threading.Lock()
@@ -48,6 +41,7 @@ class DBConnection_3:
     def get_instance():
         return DBConnection_3._con_object
 
+# OPTION-II
 class DBConnection_4:
     _con_object = None
     _lock = threading.Lock()
@@ -101,3 +95,4 @@ if __name__ == "__main__":
 
     for thread in threads:
         thread.join()
+        
