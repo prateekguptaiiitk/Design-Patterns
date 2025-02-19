@@ -38,20 +38,12 @@ class StudentBuilder(ABC):
 
 class MBAStudentBuilder(StudentBuilder):
     def set_subjects(self):
-        subs = []
-        subs.append("Micro Economics")
-        subs.append("Business Studies")
-        subs.append("Operations Management")
-        self.subjects = subs
+        self.subjects = ["Micro Economics", "Business Studies", "Operations Management"]
         return self
 
 class EngineeringStudentBuilder(StudentBuilder):
     def set_subjects(self):
-        subs = []
-        subs.append("DSA")
-        subs.append("OS")
-        subs.append("Computer Architecture")
-        self.subjects = subs
+        self.subjects = ["DSA", "OS", "Computer Architecture"]
         return self
     
 class Student:
