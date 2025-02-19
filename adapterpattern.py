@@ -21,8 +21,6 @@ class WeightMachineAdapter(ABC):
 
 class WeightMachineAdapterImpl(WeightMachineAdapter):
 
-    weightMachine = None
-
     def __init__(self, weightMachine):
         self.weightMachine = weightMachine
     
