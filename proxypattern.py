@@ -14,6 +14,7 @@ class EmployeeDAO(ABC):
         @abstractmethod
         def get(self, client, employeeId):
             pass
+            
     except Exception as e:
         print(e)
 
@@ -32,8 +33,6 @@ class EmployeeDAOImpl(EmployeeDAO):
         return EmployeeDO()
 
 class EmployeeDAOProxy(EmployeeDAO):
-    employeeDAOObj = None
-
     def __init__(self):
         self.employeeDAOObj = EmployeeDAOImpl()
 
@@ -58,9 +57,6 @@ class EmployeeDAOProxy(EmployeeDAO):
         raise Exception('Access Denied!')
 
 class EmployeeDO():
-    name = None
-    id = None
-
     def __init__(self, name, id):
         self.name = name
         self.id = id
