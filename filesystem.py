@@ -5,8 +5,6 @@ class FileSystem(ABC):
         pass
 
 class File(FileSystem):
-    fileName = None
-
     def __init__(self, name):
         self.fileName = name
 
@@ -14,9 +12,6 @@ class File(FileSystem):
         print("file name ", self.fileName)
 
 class Directory(FileSystem):
-    directoryName = None
-    fileSystemList = None
-
     def __init__(self, name):
         self.directoryName = name
         self.fileSystemList = []
