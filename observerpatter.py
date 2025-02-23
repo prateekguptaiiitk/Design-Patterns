@@ -51,10 +51,6 @@ class NotificationAlertObserver(ABC):
         pass
 
 class EmailAlertObserver(NotificationAlertObserver):
-    def __init__(self):
-        self._emailId = ''
-        self._observable = None
-
     def __init__(self, email_id, observable):
         self._observable = observable
         self.email_id = email_id
@@ -66,10 +62,6 @@ class EmailAlertObserver(NotificationAlertObserver):
         print('email sent to:', email_id)
 
 class MobileAlertObserver(NotificationAlertObserver):
-    def __init__(self):
-        self.mobile_no = ''
-        self.observable = None
-
     def __init__(self, mobile_no, observable):
         self.observable = observable
         self.mobile_no = mobile_no
