@@ -14,7 +14,7 @@ class StockObservable(ABC):
         pass
 
     @abstractmethod
-    def set_stock_count(self, newStockAdded):
+    def set_stock_count(self, new_stock_added):
         pass
 
     @abstractmethod
@@ -56,10 +56,10 @@ class EmailAlertObserver(NotificationAlertObserver):
         self.email_id = email_id
 
     def update(self):
-        self.send_message(self.email_id, 'product is back in stock')
+        self.send_message('product is back in stock')
 
-    def send_message(self, email_id, msg):
-        print('email sent to:', email_id)
+    def send_message(self, msg):
+        print('email sent to:', self.email_id)
 
 class MobileAlertObserver(NotificationAlertObserver):
     def __init__(self, mobile_no, observable):
@@ -67,10 +67,10 @@ class MobileAlertObserver(NotificationAlertObserver):
         self.mobile_no = mobile_no
 
     def update(self):
-        self.send_message(self.mobile_no, 'product is back in stock')
+        self.send_message('product is back in stock')
 
-    def send_message(self, mobile_no, msg):
-        print('msg sent to mobile no.:', mobile_no)
+    def send_message(self, msg):
+        print('msg sent to mobile no.:', self.mobile_no)
 
 if __name__ == '__main__':
     iphone_stock_observable = IphoneObservable()
