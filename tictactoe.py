@@ -5,8 +5,6 @@ class PieceType(Enum):
 	O = 'O'
 
 class PlayingPiece():
-	pieceType = None
-
 	def __init__(self, pieceType):
 		self.pieceType = pieceType
 
@@ -19,9 +17,6 @@ class PlayingPieceO(PlayingPiece):
 		super().__init__(PieceType.O)
 
 class Board():
-	size = 0
-	board = None
-
 	def __init__(self, size):
 		self.size = size
 		self.board = [[None for _ in range(self.size)] for _ in range(self.size)]
@@ -56,9 +51,6 @@ class Board():
 			print()
 
 class Player():
-	_name = None
-	_playingPiece = None
-
 	def __init__(self, name, playingPiece):
 		self._name = name
 		self._playingPiece = playingPiece
@@ -77,10 +69,9 @@ class Player():
 
 from collections import deque
 class TicTacToeGame():
-	players = deque()
-	gameBoard = None
-
 	def __init__(self):
+		self.players = deque()
+		self.gameBoard = None
 		self.initializeGame()
 
 	def initializeGame(self):
