@@ -102,6 +102,10 @@ class TicTacToeGame():
 
 			# read the user input
 			inpRow, inpCol = map(int, input('Player: ' + playerTurn._name + ' enter row, column: ').split(','))
+			if inpRow < 0 or inpRow >= self.gameBoard.size or inpCol < 0 or inpCol >= self.gameBoard.size:
+				print('Incorrect position choosen, try again')
+				self.players.appendleft(playerTurn)
+				continue
 
 			pieceAddedSuccessfully = self.gameBoard.addPiece(inpRow, inpCol, playerTurn.getPlayingPiece())
 			if not pieceAddedSuccessfully:
