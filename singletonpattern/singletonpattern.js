@@ -1,39 +1,42 @@
 class DBConnection1 {
-  static _conObject = {};
+  constructor() {
+    if (DBConnection1._conObject) {
+      throw new Error("Use DBConnection1.getInstance()");
+    }
+    // initialization code
+  }
+
+  static _instance = new DBConnection1(); // Eagerly initialized
 
   static getInstance() {
-    return DBConnection1._conObject;
+    return DBConnection1._instance;
   }
 }
 
 class DBConnection2 {
-  static _conObject = null;
-
   constructor() {
-    if (DBConnection2._conObject) {
-      return DBConnection2._conObject;
+    if (DBConnection2._instance) {
+      throw new Error("Use DBConnection2.getInstance()");
     }
     // Initialize only once
-    DBConnection2._conObject = this;
+    DBConnection2._instance = this;
   }
 
   static getInstance() {
-    if (!DBConnection2._conObject) {
-      DBConnection2._conObject = new DBConnection2();
+    if (!DBConnection2._instance) {
+      DBConnection2._instance = new DBConnection2();
     }
-    return DBConnection2._conObject;
+    return DBConnection2._instance;
   }
 }
 
 class DBConnection4 {
-  static _conObject = null;
-  static _lock = false;
-
   constructor() {
     if (DBConnection4._conObject) {
       return DBConnection4._conObject;
     }
     DBConnection4._conObject = this;
+    DBConnection4._lock = false
   }
 
   static getInstance() {
@@ -56,6 +59,7 @@ console.log(`Eager Instance ID: ${eager1 === eager2}`); // true
 const lazy1 = DBConnection2.getInstance();
 const lazy2 = DBConnection2.getInstance();
 console.log(`Lazy Instance ID: ${lazy1 === lazy2}`); // true
+// new DBConnection(); // ❌ Throws error
 
 // TEST: DBConnection4 class
 const threadSafe1 = DBConnection4.getInstance();
