@@ -11,25 +11,25 @@ function showAllTransactionTypes() {
 // ATM State Interface
 class ATMState {
   insertCard(atm, card) {
-    console.log('OOPS!! Something went wrong');
+    throw new Error('OOPS!! Something went wrong');
   }
   authenticatePin(atm, card, pin) {
-    console.log('OOPS!! Something went wrong');
+    throw new Error('OOPS!! Something went wrong');
   }
   selectOperation(atm, card, txnType) {
-    console.log('OOPS!! Something went wrong');
+    throw new Error('OOPS!! Something went wrong');
   }
   cashWithdrawal(atm, card, amount) {
-    console.log('OOPS!! Something went wrong');
+    throw new Error('OOPS!! Something went wrong');
   }
   displayBalance(atm, card) {
-    console.log('OOPS!! Something went wrong');
+    throw new Error('OOPS!! Something went wrong');
   }
   returnCard() {
-    console.log('OOPS!! Something went wrong');
+    throw new Error('OOPS!! Something went wrong');
   }
   exit(atm) {
-    console.log('OOPS!! Something went wrong');
+    throw new Error('OOPS!! Something went wrong');
   }
 }
 
@@ -38,6 +38,24 @@ class IdleState extends ATMState {
   insertCard(atm, card) {
     console.log('Card is inserted');
     atm.setCurrentATMState(new HasCardState());
+  }
+  authenticatePin(atm, card, pin) {
+    throw new Error('OOPS!! Something went wrong');
+  }
+  selectOperation(atm, card, txnType) {
+    throw new Error('OOPS!! Something went wrong');
+  }
+  cashWithdrawal(atm, card, amount) {
+    throw new Error('OOPS!! Something went wrong');
+  }
+  displayBalance(atm, card) {
+    throw new Error('OOPS!! Something went wrong');
+  }
+  returnCard() {
+    throw new Error('OOPS!! Something went wrong');
+  }
+  exit(atm) {
+    throw new Error('OOPS!! Something went wrong');
   }
 }
 
@@ -58,13 +76,22 @@ class HasCardState extends ATMState {
       this.exit(atm);
     }
   }
+  selectOperation(atm, card, txnType) {
+    throw new Error('OOPS!! Something went wrong');
+  }
+  cashWithdrawal(atm, card, amount) {
+    throw new Error('OOPS!! Something went wrong');
+  }
+  displayBalance(atm, card) {
+    throw new Error('OOPS!! Something went wrong');
+  }
+  returnCard() {
+    console.log('Please collect your card');
+  }
   exit(atm) {
     this.returnCard();
     atm.setCurrentATMState(new IdleState());
     console.log('Exit happens');
-  }
-  returnCard() {
-    console.log('Please collect your card');
   }
 }
 
@@ -74,6 +101,12 @@ class SelectOperationState extends ATMState {
     super();
     console.log('Please select the operation');
     showAllTransactionTypes();
+  }
+  insertCard(atm, card) {
+    throw new Error('OOPS!! Something went wrong');
+  }
+  authenticatePin(atm, card, pin) {
+    throw new Error('OOPS!! Something went wrong');
   }
   selectOperation(atm, card, txnType) {
     if (txnType === TransactionType.CASH_WITHDRAWAL) {
@@ -85,13 +118,19 @@ class SelectOperationState extends ATMState {
       this.exit(atm);
     }
   }
+  cashWithdrawal(atm, card, amount) {
+    throw new Error('OOPS!! Something went wrong');
+  }
+  displayBalance(atm, card) {
+    throw new Error('OOPS!! Something went wrong');
+  }
+  returnCard() {
+    console.log('Please collect your card');
+  }
   exit(atm) {
     this.returnCard();
     atm.setCurrentATMState(new IdleState());
     console.log('Exit happens');
-  }
-  returnCard() {
-    console.log('Please collect your card');
   }
 }
 
@@ -100,6 +139,15 @@ class CashWithdrawalState extends ATMState {
   constructor() {
     super();
     console.log('Please enter the withdrawal amount');
+  }
+  insertCard(atm, card) {
+    throw new Error('OOPS!! Something went wrong');
+  }
+  authenticatePin(atm, card, pin) {
+    throw new Error('OOPS!! Something went wrong');
+  }
+  selectOperation(atm, card, txnType) {
+    throw new Error('OOPS!! Something went wrong');
   }
   cashWithdrawal(atm, card, amount) {
     if (atm.getATMBalance() < amount) {
@@ -119,29 +167,44 @@ class CashWithdrawalState extends ATMState {
       this.exit(atm);
     }
   }
+  displayBalance(atm, card) {
+    throw new Error('OOPS!! Something went wrong');
+  }
+  returnCard() {
+    console.log('Please collect your card');
+  }
   exit(atm) {
     this.returnCard();
     atm.setCurrentATMState(new IdleState());
     console.log('Exit happens');
-  }
-  returnCard() {
-    console.log('Please collect your card');
   }
 }
 
 // CheckBalanceState
 class CheckBalanceState extends ATMState {
+  insertCard(atm, card) {
+    throw new Error('OOPS!! Something went wrong');
+  }
+  authenticatePin(atm, card, pin) {
+    throw new Error('OOPS!! Something went wrong');
+  }
+  selectOperation(atm, card, txnType) {
+    throw new Error('OOPS!! Something went wrong');
+  }
+  cashWithdrawal(atm, card, amount) {
+    throw new Error('OOPS!! Something went wrong');
+  }
   displayBalance(atm, card) {
     console.log('Your balance is: ', card.getBankBalance());
     this.exit(atm);
+  }  
+  returnCard() {
+    console.log('Please collect your card');
   }
   exit(atm) {
     this.returnCard();
     atm.setCurrentATMState(new IdleState());
     console.log('Exit happens');
-  }
-  returnCard() {
-    console.log('Please collect your card');
   }
 }
 
