@@ -40,7 +40,7 @@ Collections of python code for different design pattern implementation
 
 Collections of python code for different design pattern implementation on real life objects
 
-1. [Tic-Tac-Toe](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/tictactoe.py) ([uml](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/tictactoe_uml.jpg))
+1. [Tic-Tac-Toe](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/tictactoe/tictactoe.js) ([uml](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/tictactoe/tictactoe_uml.jpg))
 2. [Elevator System](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/elevatorsystem.py) ([uml](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/elevatorsystem_uml.jpg))
 3. [Hash Map Data Structure](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/myhashmap.py)
 4. [Vending Machine](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/statepattern/vendingmachine.js) ([uml](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/statepattern/vendingmachine_uml.jpg))
