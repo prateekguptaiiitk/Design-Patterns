@@ -44,7 +44,7 @@ Collections of python code for different design pattern implementation on real l
 2. [Elevator System](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/elevatorsystem.py) ([uml](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/elevatorsystem_uml.jpg))
 3. [Hash Map Data Structure](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/myhashmap.py)
 4. [Vending Machine](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/statepattern/vendingmachine.js) ([uml](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/statepattern/vendingmachine_uml.jpg))
-5. [BookMyShow (Ticket Booking Service)](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/bookmyshow.py) ([uml](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/bookmyshow_uml.jpg))
+5. [BookMyShow (Ticket Booking Service)](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/bookmyshow/bookmyshow.js) ([uml](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/bookmyshow/bookmyshow_uml.jpg))
 6. [ATM Machine](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/atm/atm.js) ([uml](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/atm/atm_uml.jpg))
 7. [File System](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/compositepattern/filesystem.js)
 8. [Calculator](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/calculator.py)
