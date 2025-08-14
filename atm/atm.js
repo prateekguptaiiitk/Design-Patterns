@@ -158,11 +158,7 @@ class CashWithdrawalState extends ATMState {
     } else {
       card.deductBankBalance(amount);
       atm.deductATMBalance(amount);
-      const processor = new TwoThousandWithdrawProcessor(
-        new FiveHundredWithdrawProcessor(
-          new OneHundredWithdrawProcessor(null)
-        )
-      );
+      const processor = new TwoThousandWithdrawProcessor(new FiveHundredWithdrawProcessor(new OneHundredWithdrawProcessor(null)));
       processor.withdraw(atm, amount);
       this.exit(atm);
     }
@@ -266,11 +262,11 @@ class OneHundredWithdrawProcessor extends CashWithdrawProcessor {
 // ATM
 class ATM {
   constructor() {
+    this.currentATMState = null
     this.atmBalance = 0;
     this.noOfTwoThousandNotes = 0;
     this.noOfFiveHundredNotes = 0;
     this.noOfOneHundredNotes = 0;
-    this.setCurrentATMState(new IdleState());
   }
   setCurrentATMState(state) {
     this.currentATMState = state;
@@ -279,7 +275,9 @@ class ATM {
     return this.currentATMState;
   }
   static getATMObject() {
-    return new ATM();
+    const atm = new ATM();
+    atm.setCurrentATMState(new IdleState())
+    return atm
   }
   setATMBalance(balance, t2k, t500, t100) {
     this.atmBalance = balance;
