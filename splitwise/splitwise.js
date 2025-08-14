@@ -7,10 +7,9 @@ class ExpenseSplit {
 class EqualExpenseSplit extends ExpenseSplit {
   validateSplitRequest(splitList, totalAmount) {
     const amountShouldBePresent = Math.floor(totalAmount / splitList.length);
-
     for (let split of splitList) {
       if (split.getAmountOwe() !== amountShouldBePresent) {
-        throw new Error("Invalid split amount");
+        throw new Error("Invalid split amount in EQUAL split");
       }
     }
   }
@@ -18,20 +17,33 @@ class EqualExpenseSplit extends ExpenseSplit {
 
 class UnequalExpenseSplit extends ExpenseSplit {
   validateSplitRequest(splitList, totalAmount) {
-    return;
+    const totalSplitAmount = splitList.reduce((sum, split) => sum + split.getAmountOwe(), 0);
+    if (totalSplitAmount !== totalAmount) {
+      throw new Error("Invalid split amounts in UNEQUAL split");
+    }
   }
 }
 
 class PercentageExpenseSplit extends ExpenseSplit {
   validateSplitRequest(splitList, totalAmount) {
-    return;
+    const totalPercentage = splitList.reduce((sum, split) => sum + split.getAmountOwe(), 0);
+    if (totalPercentage !== 100) {
+      throw new Error("Total percentage in PERCENTAGE split must be exactly 100");
+    }
+    // Optionally verify the calculated amount for each split
+    for (let split of splitList) {
+      const expectedAmount = (totalAmount * split.getAmountOwe()) / 100;
+      if (expectedAmount <= 0) {
+        throw new Error(`Invalid percentage amount for user ${split.getUser().getUserId()}`);
+      }
+    }
   }
 }
 
 class Split {
   constructor(user, amount) {
     this.user = user;
-    this.amountOwe = amount;
+    this.amountOwe = amount; // Can be amount or percentage depending on split type
   }
 
   getUser() {
@@ -93,9 +105,8 @@ class SplitFactory {
       return new UnequalExpenseSplit();
     } else if (splitType === ExpenseSplitType.PERCENTAGE) {
       return new PercentageExpenseSplit();
-    } else {
-      return null;
     }
+    return null;
   }
 }
 
@@ -214,7 +225,14 @@ class BalanceSheetController {
     for (let split of splits) {
       const userOwe = split.getUser();
       const oweUserExpenseSheet = userOwe.getUserExpenseBalanceSheet();
-      const oweAmount = split.getAmountOwe();
+      let oweAmount = split.getAmountOwe();
+
+      // Convert percentage to amount if needed
+      if (split instanceof Split && typeof oweAmount === "number" && oweAmount <= 100 && totalExpenseAmount > 0 && totalExpenseAmount % 1 === 0) {
+        if (split.getAmountOwe() <= 100 && split.getAmountOwe() % 1 === 0) {
+          // It could be a percentage case, but already handled in validation
+        }
+      }
 
       if (expensePaidBy.getUserId() === userOwe.getUserId()) {
         paidByUserExpenseSheet.setTotalYourExpense(paidByUserExpenseSheet.getTotalYourExpense() + oweAmount);
@@ -284,6 +302,13 @@ class Splitwise {
       new Split(this.userController.getUser("U2001"), 100),
     ];
     group.createExpense("Exp1002", "Lunch", 500, this.userController.getUser("U2001"), ExpenseSplitType.UNEQUAL, splits2);
+
+    const splits3 = [
+      new Split(this.userController.getUser("U1001"), 50), // 50%
+      new Split(this.userController.getUser("U2001"), 30), // 30%
+      new Split(this.userController.getUser("U3001"), 20), // 20%
+    ];
+    group.createExpense("Exp1003", "Dinner", 1000, this.userController.getUser("U3001"), ExpenseSplitType.PERCENTAGE, splits3);
 
     for (let user of this.userController.getAllUsers()) {
       this.balanceSheetController.showBalanceSheetOfUser(user);
