@@ -22,7 +22,7 @@ Collections of python code for different design pattern implementation
 8. [Facade Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/facadepattern/facadepattern.js)
 9. [Composite Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/compositepattern/filesystem.js)
 10. [Proxy Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/proxypattern/proxypattern.js)
-11. [Observer Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/observerpatter/observerpatter.js)
+11. [Observer Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/observerpattern/observerpatter.js)
 12. [Strategy Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/strategypattern/strategypattern.js)
 13. [Command Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/commandpattern/commandpattern.js)
 14. [Mediator Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/mediatorpattern/mediatorpattern.js)
