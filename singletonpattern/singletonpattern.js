@@ -32,21 +32,21 @@ class DBConnection2 {
 
 class DBConnection4 {
   constructor() {
-    if (DBConnection4._conObject) {
-      return DBConnection4._conObject;
+    if (DBConnection4._instance) {
+      return DBConnection4._instance;
     }
-    DBConnection4._conObject = this;
+    DBConnection4._instance = this;
     DBConnection4._lock = false
   }
 
   static getInstance() {
-    if (!DBConnection4._conObject) {
+    if (!DBConnection4._instance) {
       if (!DBConnection4._lock) {
         DBConnection4._lock = true;
-        DBConnection4._conObject = new DBConnection4();
+        DBConnection4._instance = new DBConnection4();
       }
     }
-    return DBConnection4._conObject;
+    return DBConnection4._instance;
   }
 }
 
