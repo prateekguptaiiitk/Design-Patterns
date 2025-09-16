@@ -1,6 +1,6 @@
 class DBConnection1 {
   constructor() {
-    if (DBConnection1._conObject) {
+    if (DBConnection1._instance) {
       throw new Error("Use DBConnection1.getInstance()");
     }
     // initialization code
