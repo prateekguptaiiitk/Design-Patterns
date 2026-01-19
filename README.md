@@ -11,12 +11,14 @@ Design patterns in programming are reusable solutions to common software design 
 ## Codes 
 Collections of python code for different design pattern implementation
 
-
+### Creational Patterns:
 1. [Singleton Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/singletonpattern/singletonpattern.py)
 2. [Factory Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/factorypattern/factorypattern.py)
 3. [Abstract Factory Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/abstractfactorypattern/abstractfactorypattern.py)
 4. [Builder Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/builderpattern/builderpattern.py)
 5. [Prototype Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/prototypepattern/prototypepattern.py)
+
+### Structural Patterns:
 6. [Adapter Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/adapterpattern/adapterpattern.py)
 7. [Decorator Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/decoratorpattern/decoratorpattern.py)
 8. [Facade Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/facadepattern/facadepattern.py)
@@ -24,6 +26,8 @@ Collections of python code for different design pattern implementation
 10. [Proxy Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/proxypattern/proxypattern.py)
 11. [Bridge Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/bridgepattern/bridgepattern.py)
 12. [Flyweight Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/flyweightpattern/flyweightpattern.py)
+
+### Behavioral Patterns:
 13. [Command Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/commandpattern/commandpattern.py)
 14. [Mediator Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/mediatorpattern/mediatorpattern.py)
 15. [Chain of Responsibility Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/chainofresponsibilitypattern/chainofresponsibilitypattern.py)
