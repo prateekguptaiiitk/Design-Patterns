@@ -29,25 +29,39 @@ class TurnACOffCommand(ICommand):
     def undo(self):
         self.ac.turn_on_AC()
 
+class SetTemperatureCommand(ICommand):
+    def __init__(self, ac, temperature):
+        self.ac = ac
+        self.temperature = temperature
+        self.prev_temperature = ac.temperature
+
+    def execute(self):
+        self.ac.set_temperature(self.temperature)
+
+    def undo(self):
+        self.ac.set_temperature(self.prev_temperature)
+
 class MyRemoteControl:
-    command = None
-    AC_command_history = []
+    def __init__(self):
+        self.command = None
+        self.ac_command_history = []
 
     def set_command(self, command):
         self.command = command
     
     def press_button(self):
         self.command.execute()
-        self.AC_command_history.append(self.command)
+        self.ac_command_history.append(self.command)
     
     def undo(self):
-        if len(self.AC_command_history):
-            last_command = self.AC_command_history.pop()
+        if len(self.ac_command_history):
+            last_command = self.ac_command_history.pop()
             last_command.undo()
 
 class AirConditioner:
-    is_on = False
-    temperature = 0
+    def __init__(self):
+        self.is_on = False
+        self.temperature = 0
 
     def turn_on_AC(self):
         self.is_on = True
@@ -70,6 +84,15 @@ if __name__ == '__main__':
 
     # create command and press button
     remote.set_command(TurnACOnCommand(air_conditioner))
+    remote.press_button()
+
+    # undo the last operation
+    remote.undo()
+
+    # create command and press button
+    remote.set_command(SetTemperatureCommand(air_conditioner, 24))
+    remote.press_button()
+    remote.set_command(SetTemperatureCommand(air_conditioner, 26))
     remote.press_button()
 
     # undo the last operation
