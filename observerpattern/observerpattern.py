@@ -37,10 +37,11 @@ class IphoneObservable(StockObservable):
             observer.update()
 
     def set_stock_count(self, new_stock_added):
-        if self.stock_count == 0:
-            self.notify_subscriber()
-
+        prev_stock = self.stock_count
         self.stock_count += new_stock_added
+
+        if prev_stock == 0 and self.stock_count > 0:
+            self.notify_subscriber()
 
     def get_stock_count(self):
         return self.stock_count
@@ -52,13 +53,14 @@ class NotificationAlertObserver(ABC):
 
 class EmailAlertObserver(NotificationAlertObserver):
     def __init__(self, email_id, observable):
-        self._observable = observable
+        self.observable = observable
         self.email_id = email_id
 
     def update(self):
-        self.send_message('product is back in stock')
+        if self.observable.get_stock_count() > 0:
+            self.send_email('product is back in stock')
 
-    def send_message(self, msg):
+    def send_email(self, msg):
         print('email sent to:', self.email_id)
 
 class MobileAlertObserver(NotificationAlertObserver):
@@ -67,9 +69,11 @@ class MobileAlertObserver(NotificationAlertObserver):
         self.mobile_no = mobile_no
 
     def update(self):
-        self.send_message('product is back in stock')
+        if self.observable.get_stock_count() <= 5:
+            self.send_message("Hurry! Only few left")
 
     def send_message(self, msg):
+        print(msg)
         print('msg sent to mobile no.:', self.mobile_no)
 
 if __name__ == '__main__':
@@ -87,5 +91,5 @@ if __name__ == '__main__':
 
     iphone_stock_observable.remove(observer2)
 
-    iphone_stock_observable.set_stock_count(40)
+    iphone_stock_observable.set_stock_count(5)
     print('Current stock count:', iphone_stock_observable.get_stock_count())
