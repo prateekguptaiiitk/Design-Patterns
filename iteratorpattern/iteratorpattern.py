@@ -12,7 +12,7 @@ class Library(Aggregate):
     def create_iterator(self):
         return BookIterator(self.book_list)
     
-class Iterator(ABC):
+class IteratorInterface(ABC):
     @abstractmethod
     def has_next(self):
         pass
@@ -21,7 +21,7 @@ class Iterator(ABC):
     def next(self):
         pass
 
-class BookIterator(Iterator):
+class BookIterator(IteratorInterface):
     def __init__(self, books):
         self.books = books
         self.index = 0
