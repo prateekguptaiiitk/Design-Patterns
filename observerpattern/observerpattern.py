@@ -58,10 +58,10 @@ class EmailAlertObserver(NotificationAlertObserver):
 
     def update(self):
         if self.observable.get_stock_count() > 0:
-            self.send_email('product is back in stock')
+            self.send_email('product is back in stock,')
 
     def send_email(self, msg):
-        print('email sent to:', self.email_id)
+        print(msg, 'email sent to:', self.email_id)
 
 class MobileAlertObserver(NotificationAlertObserver):
     def __init__(self, mobile_no, observable):
@@ -70,11 +70,10 @@ class MobileAlertObserver(NotificationAlertObserver):
 
     def update(self):
         if self.observable.get_stock_count() <= 5:
-            self.send_message("Hurry! Only few left")
+            self.send_message("Hurry! Only few left,")
 
     def send_message(self, msg):
-        print(msg)
-        print('msg sent to mobile no.:', self.mobile_no)
+        print(msg, 'msg sent to mobile no.:', self.mobile_no)
 
 if __name__ == '__main__':
     iphone_stock_observable = IphoneObservable()
