@@ -10,48 +10,58 @@ class SingleRoom(RoomElement):
         self.room_price = 0
     
     def accept(self, visitor):
-        visitor.visit(self)
+        visitor.visit_single_room(self)
 
 class DoubleRoom(RoomElement):
     def __init__(self):
         self.room_price = 0
     
     def accept(self, visitor):
-        visitor.visit(self)
+        visitor.visit_double_room(self)
 
 class DeluxRoom(RoomElement):
     def __init__(self):
         self.room_price = 0
     
     def accept(self, visitor):
-        visitor.visit(self)
+        visitor.visit_delux_room(self)
 
 class RoomVisitor(ABC):
     @abstractmethod
-    def visit(self, room):
+    def visit_single_room(self, room):
+        pass
+
+    @abstractmethod
+    def visit_double_room(self, room):
+        pass
+
+    @abstractmethod
+    def visit_delux_room(self, room):
         pass
 
 class RoomPricingVisitor(RoomVisitor):
-    def visit(self, room):
-        if isinstance(room, SingleRoom):
-            print('Pricing computation logic of single room')
-            room.room_price = 1000
-        elif isinstance(room, DoubleRoom):
-            print('Pricing computation logic of double room')
-            room.room_price = 2000
-        elif isinstance(room, DeluxRoom):
-            print('Pricing computation logic of delux room')
-            room.room_price = 3000
+    def visit_single_room(self, room):
+        print('Pricing computation logic of single room')
+        room.room_price = 1000
+
+    def visit_double_room(self, room):
+        print('Pricing computation logic of double room')
+        room.room_price = 2000
+
+    def visit_delux_room(self, room):
+        print('Pricing computation logic of delux room')
+        room.room_price = 3000
 
 class RoomMaintenanceVisitor(RoomVisitor):
-    def visit(self, room):
-        if isinstance(room, SingleRoom):
-            print('Performing maintenance of single room')
-        elif isinstance(room, DoubleRoom):
-            print('Performing maintenance of double room')
-        elif isinstance(room, DeluxRoom):
-            print('Performing maintenance of delux room')
+    def visit_single_room(self, room):
+        print('Performing maintenance of single room')
 
+    def visit_double_room(self, room):
+        print('Performing maintenance of double room')
+
+    def visit_delux_room(self, room):
+        print('Performing maintenance of delux room')
+    
 if __name__ == '__main__':
     single_room_obj = SingleRoom()
     double_room_obj = DoubleRoom()
