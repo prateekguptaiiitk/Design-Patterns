@@ -37,7 +37,7 @@ Collections of python code for different design pattern implementation
 19. [Observer Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/observerpattern/observerpattern.py)
 20. [Strategy Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/strategypattern/strategypattern.py) ([concept](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/strategypattern/README.md))
 21. [Iterator Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/iteratorpattern/iteratorpattern.py) ([concept](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/iteratorpattern/README.md))
-22. [Visitor Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/visitorpattern/visitorpattern.py) ([concept](http://github.com/prateekguptaiiitk/Design-Patterns/tree/main/visitorpattern))
+22. [Visitor Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/visitorpattern/visitorpattern.py) ([concept](http://github.com/prateekguptaiiitk/Design-Patterns/tree/main/visitorpattern/README.md))
 23. [Memento Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/mementopattern/mementopattern.py)
 
 ## Practical Implementations
