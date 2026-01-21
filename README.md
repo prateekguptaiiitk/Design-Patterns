@@ -30,7 +30,7 @@ Collections of python code for different design pattern implementation
 ### Behavioral Patterns:
 13. [Command Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/commandpattern/commandpattern.py)
 14. [Mediator Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/mediatorpattern/mediatorpattern.py)
-15. [Chain of Responsibility Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/chainofresponsibilitypattern/chainofresponsibilitypattern.py)
+15. [Chain of Responsibility Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/chainofresponsibilitypattern/chainofresponsibilitypattern.py) ([concept](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/chainofresponsibilitypattern/README.md))
 16. [State Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/statepattern/vendingmachine.py)
 17. [Template Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/templatepattern/templatepattern.py)
 18. [Null Object Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/nullobjectpattern.py)
