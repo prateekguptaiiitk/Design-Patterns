@@ -33,9 +33,9 @@ class SetTemperatureCommand(ICommand):
     def __init__(self, ac, temperature):
         self.ac = ac
         self.temperature = temperature
-        self.prev_temperature = ac.temperature
 
     def execute(self):
+        self.prev_temperature = self.ac.temperature
         self.ac.set_temperature(self.temperature)
 
     def undo(self):
