@@ -1,4 +1,4 @@
-<img src='https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/cover.png' />
+<img src='https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/assets/cover.png' />
 
 # Design Patterns
 
@@ -6,7 +6,7 @@ Design patterns in programming are reusable solutions to common software design 
 
 ## Classification
 
-<img src="https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/classification.jpg" >
+<img src="https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/assets/classification.jpg" >
 
 ## Codes 
 Collections of python code for different design pattern implementation
