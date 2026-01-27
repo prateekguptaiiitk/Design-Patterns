@@ -1,22 +1,17 @@
 from abc import ABC, abstractmethod
 
 class EmployeeDAO(ABC):
+    @abstractmethod
+    def create(self, client, employeeObj):
+        pass
 
-    try:
-        @abstractmethod
-        def create(self, client, employeeObj):
-            pass
+    @abstractmethod
+    def delete(self, client, employeeId):
+        pass
 
-        @abstractmethod
-        def delete(self, client, employeeId):
-            pass
-
-        @abstractmethod
-        def get(self, client, employeeId):
-            pass
-            
-    except Exception as e:
-        print(e)
+    @abstractmethod
+    def get(self, client, employeeId):
+        pass
 
 class EmployeeDAOImpl(EmployeeDAO):
     def create(self, client, employeeObj):
@@ -30,7 +25,7 @@ class EmployeeDAOImpl(EmployeeDAO):
     def get(self, client, employeeId):
         # fetch row
         print('fetching data from the DB')
-        return EmployeeDO()
+        return EmployeeDO("Dummy", employeeId)
 
 class EmployeeDAOProxy(EmployeeDAO):
     def __init__(self):
@@ -62,14 +57,10 @@ class EmployeeDO():
         self.id = id
     
 class ProxyDesignPattern:
-    try:
-        employeeTableObj = EmployeeDAOProxy()
-        employeeTableObj.create('USER', EmployeeDO('John', '23'))
-        # employeeTableObj.delete('ADMIN', EmployeeDO('Doe', '54').id)
-        print('operation executed successfully')
-    except Exception as e:
-        print(e)
-
+    employeeTableObj = EmployeeDAOProxy()
+    employeeTableObj.create('USER', EmployeeDO('John', '23'))
+    # employeeTableObj.delete('ADMIN', EmployeeDO('Doe', '54').id)
+    print('operation executed successfully')
 
 
 
