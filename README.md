@@ -25,7 +25,7 @@ Collections of python code for different design pattern implementation
 9. [Composite Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/compositepattern/filesystem.py)
 10. [Proxy Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/proxypattern/proxypattern.py)
 11. [Bridge Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/bridgepattern/bridgepattern.py)
-12. [Flyweight Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/flyweightpattern/flyweightpattern.py)
+12. [Flyweight Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/flyweightpattern/flyweightpattern.py) ([concept](https://github.com/prateekguptaiiitk/Design-Patterns/tree/main/flyweightpattern))
 
 ### Behavioral Patterns:
 13. [Command Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/commandpattern/commandpattern.py) ([concept](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/commandpattern/README.md))
