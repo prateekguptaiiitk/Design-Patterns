@@ -1,37 +1,39 @@
 from abc import ABC, abstractmethod
 
 # adaptee
-class WeightMaching(ABC):
+class WeighingMachine(ABC):
     
     @abstractmethod
     def getWeightInPound(self):
         pass
 
-class WeightMachineForBabies(WeightMaching):
+class WeighingMachineForBabies(WeighingMachine):
+    def __init__(self, weight):
+        self.weight = weight
+
     def getWeightInPound(self):
-        weight = int(input('Enter weight in pounds: '))
-        return weight
+        return self.weight
     
 # adapter
-class WeightMachineAdapter(ABC):
+class WeighingMachineAdapter(ABC):
     
     @abstractmethod
     def getWeightInKg(self):
         pass
 
-class WeightMachineAdapterImpl(WeightMachineAdapter):
+class WeighingMachineAdapterImpl(WeighingMachineAdapter):
 
-    def __init__(self, weightMachine):
-        self.weightMachine = weightMachine
+    def __init__(self, weighingMachine):
+        self.weighingMachine = weighingMachine
     
     def getWeightInKg(self):
-        weightInPound = self.weightMachine.getWeightInPound()
+        weightInPound = self.weighingMachine.getWeightInPound()
 
         # Convert it to KGs
-        weightInKg = weightInPound * 0.45
+        weightInKg = weightInPound * 0.453592
         return weightInKg
 
 # client
 if __name__ == '__main__':
-    weightMachineAdapter = WeightMachineAdapterImpl(WeightMachineForBabies())
-    print(weightMachineAdapter.getWeightInKg())
+    weighingMachineAdapter = WeighingMachineAdapterImpl(WeighingMachineForBabies(50))
+    print(weighingMachineAdapter.getWeightInKg())
