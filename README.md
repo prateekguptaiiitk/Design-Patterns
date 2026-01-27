@@ -28,7 +28,7 @@ Collections of python code for different design pattern implementation
 12. [Flyweight Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/flyweightpattern/flyweightpattern.py)
 
 ### Behavioral Patterns:
-13. [Command Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/commandpattern/commandpattern.py)
+13. [Command Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/commandpattern/commandpattern.py) ([concept](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/commandpattern/README.md))
 14. [Mediator Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/mediatorpattern/mediatorpattern.py)
 15. [Chain of Responsibility Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/chainofresponsibilitypattern/chainofresponsibilitypattern.py) ([concept](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/chainofresponsibilitypattern/README.md))
 16. [State Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/statepattern/vendingmachine.py)
