@@ -19,20 +19,20 @@ class DocumentCharacter(ILetter):
         return self.character
 
     def display(self, row, col):
-        print('Character:', self.character, 'font:', self.font_type, 
-              'Size:', self.size, 'At position (x, y):', row, col)
+        print('Character:', self.character, ', font:', self.font_type, 
+              ', Size:', self.size, ', At position (x, y):', row, col)
 
 class LetterFactory:
-    character_cache = defaultdict(ILetter)
+    __character_cache = defaultdict(ILetter)
 
     @classmethod
-    def create_letter(cls, character_value):  # Use 'cls' convention
-        if character_value in cls.character_cache:
-            return cls.character_cache[character_value]
+    def create_letter(cls, character, font='Arial', size=10):  # Use 'cls' convention
+        key = (character, font, size)
+
+        if key not in cls.__character_cache:
+            cls.__character_cache[key] = DocumentCharacter(character, font, size)
         
-        character_obj = DocumentCharacter(character_value, 'Arial', 10)
-        cls.character_cache[character_value] = character_obj
-        return character_obj
+        return cls.__character_cache[key]
 
 if __name__ == '__main__':
     '''
