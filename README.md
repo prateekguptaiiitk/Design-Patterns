@@ -76,7 +76,7 @@ All credits to [Shreyansh Jain](https://www.linkedin.com/in/jainshrayansh/) for 
      
 <p align="center">
 <a href = "https://github.com/prateekguptaiiitk"><img src = "http://www.iconninja.com/files/241/825/211/round-collaboration-social-github-code-circle-network-icon.svg" width="36" height = "36"/></a>
-<!-- <a href = "https://twitter.com/prateekwrites"><img src = "https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/twitter%20svg%20icon.svg" width="36" height="36"/></a> -->
+<!-- <a href = "https://twitter.com/prateekwrites"><img src = "https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/assets/twitter%20svg%20icon.svg" width="36" height="36"/></a> -->
 <a href = "https://www.linkedin.com/in/prateekjpg/"><img src = "http://www.iconninja.com/files/863/607/751/network-linkedin-social-connection-circular-circle-media-icon.svg" width="36" height="36"/></a>
 </p>
 </td>
