@@ -20,7 +20,7 @@ Collections of python code for different design pattern implementation
 
 ### Structural Patterns:
 6. [Adapter Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/adapterpattern/adapterpattern.py) ([concept](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/adapterpattern/README.md))
-7. [Decorator Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/decoratorpattern/decoratorpattern.py)
+7. [Decorator Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/decoratorpattern/decoratorpattern.py) ([concept](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/decoratorpattern/README.md))
 8. [Facade Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/facadepattern/facadepattern.py)
 9. [Composite Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/compositepattern/filesystem.py)
 10. [Proxy Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/proxypattern/proxypattern.py) ([concept](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/proxypattern/README.md))
