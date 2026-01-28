@@ -8,40 +8,6 @@ Design patterns in programming are reusable solutions to common software design 
 
 <img src="https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/assets/classification.jpg" >
 
-<!--
-## Codes 
-Collections of python code for different design pattern implementation
-
-### Creational Patterns:
-1. [Singleton Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/singletonpattern/singletonpattern.py)
-2. [Factory Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/factorypattern/factorypattern.py)
-3. [Abstract Factory Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/abstractfactorypattern/abstractfactorypattern.py)
-4. [Builder Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/builderpattern/builderpattern.py)
-5. [Prototype Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/prototypepattern/prototypepattern.py)
-
-### Structural Patterns:
-6. [Adapter Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/adapterpattern/adapterpattern.py) ([concept](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/adapterpattern/README.md))
-7. [Decorator Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/decoratorpattern/decoratorpattern.py) ([concept](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/decoratorpattern/README.md))
-8. [Facade Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/facadepattern/facadepattern.py) ([concept](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/facadepattern/README.md))
-9. [Composite Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/compositepattern/filesystem.py) ([concept](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/compositepattern/README.md))
-10. [Proxy Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/proxypattern/proxypattern.py) ([concept](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/proxypattern/README.md))
-11. [Bridge Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/bridgepattern/bridgepattern.py) ([concept](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/bridgepattern/README.md))
-12. [Flyweight Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/flyweightpattern/flyweightpattern.py) ([concept](https://github.com/prateekguptaiiitk/Design-Patterns/tree/main/flyweightpattern))
-
-### Behavioral Patterns:
-13. [Command Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/commandpattern/commandpattern.py) ([concept](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/commandpattern/README.md))
-14. [Mediator Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/mediatorpattern/mediatorpattern.py) ([concept](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/mediatorpattern/README.md))
-15. [Chain of Responsibility Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/chainofresponsibilitypattern/chainofresponsibilitypattern.py) ([concept](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/chainofresponsibilitypattern/README.md))
-16. [State Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/statepattern/vendingmachine.py)
-17. [Template Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/templatepattern/templatepattern.py)
-18. [Null Object Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/nullobjectpattern/nullobjectpattern.py)
-19. [Observer Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/observerpattern/observerpattern.py) ([concept](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/observerpattern/README.md))
-20. [Strategy Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/strategypattern/strategypattern.py) ([concept](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/strategypattern/README.md))
-21. [Iterator Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/iteratorpattern/iteratorpattern.py) ([concept](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/iteratorpattern/README.md))
-22. [Visitor Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/visitorpattern/visitorpattern.py) ([concept](http://github.com/prateekguptaiiitk/Design-Patterns/tree/main/visitorpattern/README.md))
-23. [Memento Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/mementopattern/mementopattern.py) ([concept](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/mementopattern/README.md))
--->
-
 ## 🎯 Design Patterns – Code & Concepts
 
 Collections of **Design Pattern implementations** with **concept explanations** and **code examples** in Python and JavaScript.
@@ -50,11 +16,11 @@ Collections of **Design Pattern implementations** with **concept explanations** 
 
 | Sl. No. | Design Pattern | Concept | Python Code | JavaScript Code |
 |-------:|----------------|---------|-------------|-----------------|
-| 1 | Singleton Pattern | [Concept](https://github.com/prateekguptaiiitk/Design-Patterns/tree/main/singletonpattern/README.md) | [Python](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/singletonpattern/singletonpattern.py) | [JS](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/singletonpattern/singletonpattern.js) |
-| 2 | Factory Pattern | [Concept](https://github.com/prateekguptaiiitk/Design-Patterns/tree/main/factorypattern/README.md) | [Python](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/factorypattern/factorypattern.py) | [JS](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/factorypattern/factorypattern.js) |
-| 3 | Abstract Factory Pattern | [Concept](https://github.com/prateekguptaiiitk/Design-Patterns/tree/main/abstractfactorypattern/README.md) | [Python](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/abstractfactorypattern/abstractfactorypattern.py) | [JS](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/abstractfactorypattern/abstractfactorypattern.js) |
-| 4 | Builder Pattern | [Concept](https://github.com/prateekguptaiiitk/Design-Patterns/tree/main/builderpattern/README.md) | [Python](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/builderpattern/builderpattern.py) | [JS](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/builderpattern/builderpattern.js) |
-| 5 | Prototype Pattern | [Concept](https://github.com/prateekguptaiiitk/Design-Patterns/tree/main/prototypepattern/README.md) | [Python](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/prototypepattern/prototypepattern.py) | [JS](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/prototypepattern/prototypepattern.js) |
+| 1 | Singleton Pattern |  | [Python](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/singletonpattern/singletonpattern.py) | [JS](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/singletonpattern/singletonpattern.js) |
+| 2 | Factory Pattern | | [Python](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/factorypattern/factorypattern.py) | [JS](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/factorypattern/factorypattern.js) |
+| 3 | Abstract Factory Pattern |  | [Python](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/abstractfactorypattern/abstractfactorypattern.py) | [JS](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/abstractfactorypattern/abstractfactorypattern.js) |
+| 4 | Builder Pattern |  | [Python](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/builderpattern/builderpattern.py) | [JS](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/builderpattern/builderpattern.js) |
+| 5 | Prototype Pattern | | [Python](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/prototypepattern/prototypepattern.py) | [JS](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/prototypepattern/prototypepattern.js) |
 
 
 ### 🧱 Structural Design Patterns
@@ -77,9 +43,9 @@ Collections of **Design Pattern implementations** with **concept explanations** 
 |13 | Command Pattern | [Concept](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/commandpattern/README.md) | [Python](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/commandpattern/commandpattern.py) | [JS](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/commandpattern/commandpattern.js) |
 |14 | Mediator Pattern | [Concept](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/mediatorpattern/README.md) | [Python](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/mediatorpattern/mediatorpattern.py) | [JS](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/mediatorpattern/mediatorpattern.js) |
 |15 | Chain of Responsibility | [Concept](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/chainofresponsibilitypattern/README.md) | [Python](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/chainofresponsibilitypattern/chainofresponsibilitypattern.py) | [JS](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/chainofresponsibilitypattern/chainofresponsibilitypattern.js) |
-|16 | State Pattern | [Concept](https://github.com/prateekguptaiiitk/Design-Patterns/tree/main/statepattern/README.md) | [Python](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/statepattern/vendingmachine.py) | [JS](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/statepattern/vendingmachine.js) |
-|17 | Template Pattern | [Concept](https://github.com/prateekguptaiiitk/Design-Patterns/tree/main/templatepattern/README.md) | [Python](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/templatepattern/templatepattern.py) | [JS](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/templatepattern/templatepattern.js) |
-|18 | Null Object Pattern | [Concept](https://github.com/prateekguptaiiitk/Design-Patterns/tree/main/nullobjectpattern/README.md) | [Python](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/nullobjectpattern/nullobjectpattern.py) | [JS](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/nullobjectpattern/nullobjectpattern.js) |
+|16 | State Pattern |  | [Python](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/statepattern/vendingmachine.py) | [JS](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/statepattern/vendingmachine.js) |
+|17 | Template Pattern |  | [Python](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/templatepattern/templatepattern.py) | [JS](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/templatepattern/templatepattern.js) |
+|18 | Null Object Pattern | | [Python](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/nullobjectpattern/nullobjectpattern.py) | [JS](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/nullobjectpattern/nullobjectpattern.js) |
 |19 | Observer Pattern | [Concept](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/observerpattern/README.md) | [Python](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/observerpattern/observerpattern.py) | [JS](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/observerpattern/observerpattern.js) |
 |20 | Strategy Pattern | [Concept](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/strategypattern/README.md) | [Python](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/strategypattern/strategypattern.py) | [JS](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/strategypattern/strategypattern.js) |
 |21 | Iterator Pattern | [Concept](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/iteratorpattern/README.md) | [Python](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/iteratorpattern/iteratorpattern.py) | [JS](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/iteratorpattern/iteratorpattern.js) |
