@@ -21,8 +21,8 @@ Collections of python code for different design pattern implementation
 ### Structural Patterns:
 6. [Adapter Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/adapterpattern/adapterpattern.py) ([concept](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/adapterpattern/README.md))
 7. [Decorator Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/decoratorpattern/decoratorpattern.py) ([concept](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/decoratorpattern/README.md))
-8. [Facade Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/facadepattern/facadepattern.py)
-9. [Composite Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/compositepattern/filesystem.py)
+8. [Facade Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/facadepattern/facadepattern.py) 
+9. [Composite Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/compositepattern/filesystem.py) ([concept](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/compositepattern/README.md))
 10. [Proxy Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/proxypattern/proxypattern.py) ([concept](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/proxypattern/README.md))
 11. [Bridge Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/bridgepattern/bridgepattern.py) ([concept](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/bridgepattern/README.md))
 12. [Flyweight Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/flyweightpattern/flyweightpattern.py) ([concept](https://github.com/prateekguptaiiitk/Design-Patterns/tree/main/flyweightpattern))
