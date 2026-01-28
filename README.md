@@ -42,11 +42,11 @@ Collections of python code for different design pattern implementation
 23. [Memento Pattern](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/mementopattern/mementopattern.py) ([concept](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/mementopattern/README.md))
 -->
 
-# 🎯 Design Patterns – Code & Concepts
+## 🎯 Design Patterns – Code & Concepts
 
 Collections of **Design Pattern implementations** with **concept explanations** and **code examples** in Python and JavaScript.
 
-## 🏗️ Creational Design Patterns
+### 🏗️ Creational Design Patterns
 
 | Sl. No. | Design Pattern | Concept | Python Code | JavaScript Code |
 |-------:|----------------|---------|-------------|-----------------|
@@ -57,7 +57,7 @@ Collections of **Design Pattern implementations** with **concept explanations** 
 | 5 | Prototype Pattern | [Concept](https://github.com/prateekguptaiiitk/Design-Patterns/tree/main/prototypepattern/README.md) | [Python](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/prototypepattern/prototypepattern.py) | [JS](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/prototypepattern/prototypepattern.js) |
 
 
-## 🧱 Structural Design Patterns
+### 🧱 Structural Design Patterns
 
 | Sl. No. | Design Pattern | Concept | Python Code | JavaScript Code |
 |-------:|----------------|---------|-------------|-----------------|
@@ -70,7 +70,7 @@ Collections of **Design Pattern implementations** with **concept explanations** 
 |12 | Flyweight Pattern | [Concept](https://github.com/prateekguptaiiitk/Design-Patterns/tree/main/flyweightpattern) | [Python](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/flyweightpattern/flyweightpattern.py) | [JS](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/flyweightpattern/flyweightpattern.js) |
 
 
-## 🔄 Behavioral Design Patterns
+### 🔄 Behavioral Design Patterns
 
 | Sl. No. | Design Pattern | Concept | Python Code | JavaScript Code |
 |-------:|----------------|---------|-------------|-----------------|
