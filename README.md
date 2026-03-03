@@ -72,6 +72,7 @@ Collections of python code for different design pattern implementation on real l
 9. [Splitwise](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/splitwise/splitwise.py) ([uml](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/splitwise/splitwise_uml.jpg))
 10. [Cricbuzz](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/cricbuzz.py)
 11. [Inventory Management](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/inventorymanagement.py)
+12. [Parking Lot Management](https://github.com/prateekguptaiiitk/Design-Patterns/blob/main/parkinglot/parkinglot.py)
 
 ## Credits
 
