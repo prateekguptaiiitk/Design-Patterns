@@ -182,7 +182,7 @@ class OperationType(Enum):
     DEPOSIT_CASH = "DEPOSIT_CASH"
 
 
-
+# interface
 class ATMState(ABC):
     @abstractmethod
     def insert_card(self, atm: 'ATM', card_number: str):
