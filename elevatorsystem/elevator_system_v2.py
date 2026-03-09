@@ -19,6 +19,27 @@ class RequestSource(Enum):
     EXTERNAL = "EXTERNAL"  # From the hall/floor
 
 
+class Floor:
+    def __init__(self, floor_number: int, elevator_system):
+        self.floor_number = floor_number
+        self.elevator_system = elevator_system
+        self.up_button_pressed = False
+        self.down_button_pressed = False
+
+    def press_up_button(self):
+        print(f"\n[Floor {self.floor_number}] UP button pressed")
+        self.up_button_pressed = True
+        self.elevator_system.request_elevator(self.floor_number, Direction.UP)
+
+    def press_down_button(self):
+        print(f"\n[Floor {self.floor_number}] DOWN button pressed")
+        self.down_button_pressed = True
+        self.elevator_system.request_elevator(self.floor_number, Direction.DOWN)
+
+    def get_floor_number(self):
+        return self.floor_number
+    
+
 @dataclass
 class Request:
     target_floor: int
@@ -252,7 +273,7 @@ class ElevatorSystem:
     _instance = None
     _lock = threading.Lock()
 
-    def __new__(cls, num_elevators: int):
+    def __new__(cls, num_elevators: int, num_floors: int):
         if cls._instance is None:
             with cls._lock:
                 if cls._instance is None:
@@ -260,9 +281,14 @@ class ElevatorSystem:
                     cls._instance._initialized = False
         return cls._instance
 
-    def __init__(self, num_elevators: int):
+    def __init__(self, num_elevators: int, num_floors: int):
         if self._initialized:
             return
+        
+        self.floors = {}
+
+        for floor in range(1, num_floors + 1):
+            self.floors[floor] = Floor(floor, self)
         
         self.selection_strategy = NearestElevatorStrategy()
         self.executor_service = ThreadPoolExecutor(max_workers=num_elevators)
@@ -279,9 +305,12 @@ class ElevatorSystem:
         self._initialized = True
 
     @classmethod
-    def get_instance(cls, num_elevators: int):
-        return cls(num_elevators)
-
+    def get_instance(cls, num_elevators: int, num_floors: int):
+        return cls(num_elevators, num_floors)
+    
+    def get_floor(self, floor_number: int) -> Optional[Floor]:
+        return self.floors.get(floor_number)
+    
     def start(self):
         for elevator in self.elevators.values():
             self.executor_service.submit(elevator.run)
@@ -327,8 +356,10 @@ class ElevatorSystemDemo:
         
         # Setup: A building with 2 elevators
         num_elevators = 2
+        num_floors = 10
         # The get_instance method now initializes the elevators and attaches the Display (Observer).
-        elevator_system = ElevatorSystem.get_instance(num_elevators)
+        elevator_system = ElevatorSystem.get_instance(num_elevators, num_floors)
+
 
         # Start the elevator system
         elevator_system.start()
@@ -338,7 +369,7 @@ class ElevatorSystemDemo:
 
         # 1. External Request: User at floor 5 wants to go UP.
         # The system will dispatch this to the nearest elevator (likely E1 or E2, both at floor 1).
-        elevator_system.request_elevator(5, Direction.UP)
+        elevator_system.get_floor(5).press_up_button()
         time.sleep(0.1)  # Wait for the elevator to start moving
 
         # 2. Internal Request: Assume E1 took the previous request.
@@ -352,7 +383,7 @@ class ElevatorSystemDemo:
 
         # 3. External Request: User at floor 3 wants to go DOWN.
         # E2 (likely still idle at floor 1) might take this, or E1 if it's convenient.
-        elevator_system.request_elevator(3, Direction.DOWN)
+        elevator_system.get_floor(3).press_down_button()
         time.sleep(0.3)
 
         # 4. Internal Request: User in E2 presses 1.
