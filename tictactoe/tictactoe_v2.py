@@ -73,14 +73,6 @@ class Board:
     def get_size(self):
         return self.size
 
-
-# interface
-class GameObserver(ABC):
-    @abstractmethod
-    def update(self, game):
-        pass
-
-
 class Player:
     def __init__(self, name: str, symbol: Symbol):
         self.name = name
@@ -91,7 +83,13 @@ class Player:
     
     def get_symbol(self):
         return self.symbol
+    
 
+class GameStatus(Enum):
+    IN_PROGRESS = "IN_PROGRESS"
+    WINNER_X = "WINNER_X"
+    WINNER_O = "WINNER_O"
+    DRAW = "DRAW"
 
 
 # interface
@@ -131,13 +129,82 @@ class WinnerState(GameState):
         raise InvalidMoveException(f"Game is already over. {game.get_winner().get_name()} has won.")
 
 
+# interface
+class WinningStrategy(ABC):
+    @abstractmethod
+    def check_winner(self, board: Board, player: Player) -> bool:
+        pass
 
-class GameStatus(Enum):
-    IN_PROGRESS = "IN_PROGRESS"
-    WINNER_X = "WINNER_X"
-    WINNER_O = "WINNER_O"
-    DRAW = "DRAW"
+class RowWinningStrategy(WinningStrategy):
+    def check_winner(self, board: Board, player: Player) -> bool:
+        for row in range(board.get_size()):
+            row_win = True
+            for col in range(board.get_size()):
+                if board.get_cell(row, col).get_symbol() != player.get_symbol():
+                    row_win = False
+                    break
+            if row_win:
+                return True
+        return False
 
+class ColumnWinningStrategy(WinningStrategy):
+    def check_winner(self, board: Board, player: Player) -> bool:
+        for col in range(board.get_size()):
+            col_win = True
+            for row in range(board.get_size()):
+                if board.get_cell(row, col).get_symbol() != player.get_symbol():
+                    col_win = False
+                    break
+            if col_win:
+                return True
+        return False
+
+class DiagonalWinningStrategy(WinningStrategy):
+    def check_winner(self, board: Board, player: Player) -> bool:
+        # Main diagonal
+        main_diag_win = True
+        for i in range(board.get_size()):
+            if board.get_cell(i, i).get_symbol() != player.get_symbol():
+                main_diag_win = False
+                break
+        if main_diag_win:
+            return True
+        
+        # Anti-diagonal
+        anti_diag_win = True
+        for i in range(board.get_size()):
+            if board.get_cell(i, board.get_size() - 1 - i).get_symbol() != player.get_symbol():
+                anti_diag_win = False
+                break
+        return anti_diag_win
+
+
+# interface
+class GameObserver(ABC):
+    @abstractmethod
+    def update(self, game):
+        pass
+
+class Scoreboard(GameObserver):
+    def __init__(self):
+        self.scores = {}
+    
+    def update(self, game):
+        # The scoreboard only cares about finished games with a winner
+        if game.get_winner() is not None:
+            winner_name = game.get_winner().get_name()
+            self.scores[winner_name] = self.scores.get(winner_name, 0) + 1
+            print(f"[Scoreboard] {winner_name} wins! Their new score is {self.scores[winner_name]}.")
+    
+    def print_scores(self):
+        print("\n--- Overall Scoreboard ---")
+        if not self.scores:
+            print("No games with a winner have been played yet.")
+            return
+        
+        for player_name, score in self.scores.items():
+            print(f"Player: {player_name:<10} | Wins: {score}")
+        print("--------------------------\n")
 
 
 # abstract class
@@ -154,7 +221,6 @@ class GameSubject(ABC):
     def notify_observers(self):
         for observer in self.observers:
             observer.update(self)
-
 
 
 class Game(GameSubject):
@@ -210,81 +276,6 @@ class Game(GameSubject):
             self.notify_observers()
 
 
-
-class Scoreboard(GameObserver):
-    def __init__(self):
-        self.scores = {}
-    
-    def update(self, game):
-        # The scoreboard only cares about finished games with a winner
-        if game.get_winner() is not None:
-            winner_name = game.get_winner().get_name()
-            self.scores[winner_name] = self.scores.get(winner_name, 0) + 1
-            print(f"[Scoreboard] {winner_name} wins! Their new score is {self.scores[winner_name]}.")
-    
-    def print_scores(self):
-        print("\n--- Overall Scoreboard ---")
-        if not self.scores:
-            print("No games with a winner have been played yet.")
-            return
-        
-        for player_name, score in self.scores.items():
-            print(f"Player: {player_name:<10} | Wins: {score}")
-        print("--------------------------\n")
-
-
-
-# interface
-class WinningStrategy(ABC):
-    @abstractmethod
-    def check_winner(self, board: Board, player: Player) -> bool:
-        pass
-
-class RowWinningStrategy(WinningStrategy):
-    def check_winner(self, board: Board, player: Player) -> bool:
-        for row in range(board.get_size()):
-            row_win = True
-            for col in range(board.get_size()):
-                if board.get_cell(row, col).get_symbol() != player.get_symbol():
-                    row_win = False
-                    break
-            if row_win:
-                return True
-        return False
-
-class ColumnWinningStrategy(WinningStrategy):
-    def check_winner(self, board: Board, player: Player) -> bool:
-        for col in range(board.get_size()):
-            col_win = True
-            for row in range(board.get_size()):
-                if board.get_cell(row, col).get_symbol() != player.get_symbol():
-                    col_win = False
-                    break
-            if col_win:
-                return True
-        return False
-
-class DiagonalWinningStrategy(WinningStrategy):
-    def check_winner(self, board: Board, player: Player) -> bool:
-        # Main diagonal
-        main_diag_win = True
-        for i in range(board.get_size()):
-            if board.get_cell(i, i).get_symbol() != player.get_symbol():
-                main_diag_win = False
-                break
-        if main_diag_win:
-            return True
-        
-        # Anti-diagonal
-        anti_diag_win = True
-        for i in range(board.get_size()):
-            if board.get_cell(i, board.get_size() - 1 - i).get_symbol() != player.get_symbol():
-                anti_diag_win = False
-                break
-        return anti_diag_win
-
-
-
 class TicTacToeSystem:
     _instance = None
     _lock = threading.Lock()
@@ -333,7 +324,6 @@ class TicTacToeSystem:
     
     def print_score_board(self):
         self.scoreboard.print_scores()
-
 
 
 class TicTacToeDemo:
